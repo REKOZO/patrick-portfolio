@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Wishlist | Peinard Shopping</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #3b82f6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --light: #f9fafb;
+            --dark: #1f2937;
+            --gray: #6b7280;
+            --gray-light: #e5e7eb;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            background-color: #f3f4f6;
+            color: var(--dark);
+            line-height: 1.5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        header {
+            background-color: white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--dark);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        .user-menu {
+            display: flex;
+            align-items: center;
+        }
+        
+        .user-menu img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-left: 1rem;
+            object-fit: cover;
+        }
+        
+        .wishlist-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 2rem 0 1.5rem;
+        }
+        
+        .wishlist-header h1 {
+            font-size: 1.75rem;
+            color: var(--dark);
+        }
+        
+        .wishlist-actions {
+            display: flex;
+            gap: 0.75rem;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            outline: none;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--gray-light);
+            color: var(--dark);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--gray-light);
+        }
+        
+        .btn-sm {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.875rem;
+        }
+        
+        .btn-danger {
+            background-color: var(--danger);
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background-color: #dc2626;
+        }
+        
+        .wishlist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .wishlist-empty {
+            text-align: center;
+            padding: 4rem 0;
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .wishlist-empty i {
+            font-size: 3rem;
+            color: var(--gray-light);
+            margin-bottom: 1rem;
+        }
+        
+        .wishlist-empty h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .wishlist-empty p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.2s;
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 0.5rem;
+            left: 0.5rem;
+            background-color: var(--success);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            z-index: 10;
+        }
+        
+        .product-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+        
+        .product-details {
+            padding: 1.25rem;
+        }
+        
+        .product-store {
+            font-size: 0.75rem;
+            color: var(--gray);
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .product-store img {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            margin-right: 0.25rem;
+        }
+        
+        .product-title {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .product-price {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .current-price {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .original-price {
+            font-size: 0.875rem;
+            text-decoration: line-through;
+            color: var(--gray);
+            margin-left: 0.5rem;
+        }
+        
+        .price-drop {
+            font-size: 0.75rem;
+            color: var(--success);
+            background-color: rgba(16, 185, 129, 0.1);
+            padding: 0.125rem 0.25rem;
+            border-radius: 0.125rem;
+            margin-left: 0.5rem;
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .product-actions .btn {
+            flex: 1;
+        }
+        
+        .remove-btn {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: var(--gray-light);
+            color: var(--gray);
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .remove-btn:hover {
+            background-color: var(--danger);
+            color: white;
+        }
+        
+        .price-history {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--gray-light);
+        }
+        
+        .price-history p {
+            font-size: 0.75rem;
+            color: var(--gray);
+        }
+        
+        .price-history .trend {
+            display: inline-flex;
+            align-items: center;
+            color: var(--success);
+        }
+        
+        .price-history .trend.down {
+            color: var(--danger);
+        }
+        
+        .wishlist-filters {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            background-color: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .filter-group {
+            display: flex;
+            align-items: center;
+        }
+        
+        .filter-group label {
+            margin-right: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--gray);
+        }
+        
+        .filter-select {
+            padding: 0.375rem 0.75rem;
+            border: 1px solid var(--gray-light);
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            background-color: white;
+        }
+        
+        footer {
+            background-color: white;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            border-top: 1px solid var(--gray-light);
+        }
+        
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .footer-links {
+            display: flex;
+        }
+        
+        .footer-links div {
+            margin-right: 3rem;
+        }
+        
+        .footer-links h4 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links ul li a {
+            text-decoration: none;
+            color: var(--gray);
+            font-size: 0.875rem;
+            transition: color 0.2s;
+        }
+        
+        .footer-links ul li a:hover {
+            color: var(--primary);
+        }
+        
+        .footer-bottom {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--gray-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.875rem;
+            color: var(--gray);
+        }
+        
+        .social-links a {
+            margin-left: 1rem;
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .social-links a:hover {
+            color: var(--primary);
+        }
+        
+        @media (max-width: 768px) {
+            .wishlist-grid {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            }
+            
+            .wishlist-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .wishlist-actions {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .footer-container {
+                flex-direction: column;
+            }
+            
+            .footer-links {
+                flex-wrap: wrap;
+                margin-bottom: 1.5rem;
+            }
+            
+            .footer-links div {
+                margin-right: 1.5rem;
+                margin-bottom: 1.5rem;
+                width: calc(50% - 1.5rem);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .wishlist-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .product-actions {
+                flex-direction: column;
+            }
+            
+            .wishlist-filters {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+            
+            .footer-links div {
+                width: 100%;
+                margin-right: 0;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">France<span>BuyProxy</span></a>
+            <nav>
+                <ul>
+                    <li><a href="stores.html">Stores</a></li>
+                    <li><a href="how-it-works.html">How It Works</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                </ul>
+            </nav>
+            <div class="user-menu">
+                <span>Welcome, John</span>
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User profile">
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="wishlist-header">
+            <h1>My Wishlist</h1>
+            <div class="wishlist-actions">
+                <button class="btn btn-outline">
+                    <i class="fas fa-share-alt"></i> Share
+                </button>
+                <button class="btn btn-primary">
+                    <i class="fas fa-search"></i> Track Price Drops
+                </button>
+            </div>
+        </div>
+        
+        <div class="wishlist-filters">
+            <div class="filter-group">
+                <label>Sort by:</label>
+                <select class="filter-select">
+                    <option>Recently Added</option>
+                    <option>Price: Low to High</option>
+                    <option>Price: High to Low</option>
+                    <option>Biggest Discount</option>
+                    <option>Store</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Filter by:</label>
+                <select class="filter-select">
+                    <option>All Items</option>
+                    <option>Price Drops</option>
+                    <option>In Stock</option>
+                    <option>Out of Stock</option>
+                    <option>By Store</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="wishlist-grid">
+            <!-- Product Card 1 -->
+            <div class="product-card">
+                <div class="product-badge">
+                    -20%
+                </div>
+                <div class="product-image">
+                    <img src="https://m.media-amazon.com/images/I/71X8N9Q+RBL._AC_UL320_.jpg" alt="Louis Vuitton Bag">
+                </div>
+                <div class="product-details">
+                    <div class="product-store">
+                        <img src="https://logo.clearbit.com/louisvuitton.com" alt="Louis Vuitton"> Louis Vuitton
+                    </div>
+                    <h3 class="product-title">Louis Vuitton Neverfull MM Monogram Canvas Tote Bag</h3>
+                    <div class="product-price">
+                        <span class="current-price">€1,280.00</span>
+                        <span class="original-price">€1,600.00</span>
+                        <span class="price-drop">€320 off</span>
+                    </div>
+                    <div class="price-history">
+                        <p>Price trend: <span class="trend down"><i class="fas fa-arrow-down"></i> 12% this month</span></p>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn btn-primary btn-sm">
+                            <i class="fas fa-shopping-cart"></i> Buy Now
+                        </button>
+                        <button class="remove-btn">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product Card 2 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://m.media-amazon.com/images/I/61+Q6Rh+PoL._AC_UL320_.jpg" alt="Chanel Perfume">
+                </div>
+                <div class="product-details">
+                    <div class="product-store">
+                        <img src="https://logo.clearbit.com/chanel.com" alt="Chanel"> Chanel
+                    </div>
+                    <h3 class="product-title">Chanel Chance Eau Tendre Eau de Toilette Spray 100ml</h3>
+                    <div class="product-price">
+                        <span class="current-price">€125.00</span>
+                    </div>
+                    <div class="price-history">
+                        <p>Price trend: <span class="trend"><i class="fas fa-arrow-up"></i> 5% this month</span></p>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn btn-primary btn-sm">
+                            <i class="fas fa-shopping-cart"></i> Buy Now
+                        </button>
+                        <button class="remove-btn">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product Card 3 -->
+            <div class="product-card">
+                <div class="product-badge">
+                    -15%
+                </div>
+                <div class="product-image">
+                    <img src="https://m.media-amazon.com/images/I/71YHjVXyR0L._AC_UL320_.jpg" alt="Dior Sunglasses">
+                </div>
+                <div class="product-details">
+                    <div class="product-store">
+                        <img src="https://logo.clearbit.com/dior.com" alt="Dior"> Dior
+                    </div>
+                    <h3 class="product-title">Dior So Real Sunglasses in Gold & Blue Gradient</h3>
+                    <div class="product-price">
+                        <span class="current-price">€340.00</span>
+                        <span class="original-price">€400.00</span>
+                    </div>
+                    <div class="price-history">
+                        <p>Price trend: <span class="trend down"><i class="fas fa-arrow-down"></i> 8% this month</span></p>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn btn-primary btn-sm">
+                            <i class="fas fa-shopping-cart"></i> Buy Now
+                        </button>
+                        <button class="remove-btn">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product Card 4 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://m.media-amazon.com/images/I/71gdBkvZhGL._AC_UL320_.jpg" alt="Hermes Scarf">
+                </div>
+                <div class="product-details">
+                    <div class="product-store">
+                        <img src="https://logo.clearbit.com/hermes.com" alt="Hermes"> Hermès
+                    </div>
+                    <h3 class="product-title">Hermès Twilly Silk Scarf - Bleu Electrique/Blanc</h3>
+                    <div class="product-price">
+                        <span class="current-price">€165.00</span>
+                    </div>
+                    <div class="price-history">
+                        <p>Price trend: <span class="trend"><i class="fas fa-equals"></i> Stable</span></p>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn btn-primary btn-sm">
+                            <i class="fas fa-shopping-cart"></i> Buy Now
+                        </button>
+                        <button class="remove-btn">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product Card 5 -->
+            <div class="product-card">
+                <div class="product-badge">
+                    Out of Stock
+                </div>
+                <div class="product-image">
+                    <img src="https://m.media-amazon.com/images/I/71H7YZKvYVL._AC_UL320_.jpg" alt="YSL Bag">
+                </div>
+                <div class="product-details">
+                    <div class="product-store">
+                        <img src="https://logo.clearbit.com/ysl.com" alt="YSL"> Saint Laurent
+                    </div>
+                    <h3 class="product-title">YSL Lou Camera Bag in Black Grained Leather</h3>
+                    <div class="product-price">
+                        <span class="current-price">€1,190.00</span>
+                    </div>
+                    <div class="price-history">
+                        <p>Price trend: <span class="trend down"><i class="fas fa-arrow-down"></i> 15% this month</span></p>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn btn-outline btn-sm" disabled>
+                            <i class="fas fa-bell"></i> Notify Me
+                        </button>
+                        <button class="remove-btn">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product Card 6 -->
+            <div class="product-card">
+                <div class="product-badge">
+                    -30%
+                </div>
+                <div class="product-image">
+                    <img src="https://m.media-amazon.com/images/I/71e04N53RVL._AC_UL320_.jpg" alt="Gucci Shoes">
+                </div>
+                <div class="product-details">
+                    <div class="product-store">
+                        <img src="https://logo.clearbit.com/gucci.com" alt="Gucci"> Gucci
+                    </div>
+                    <h3 class="product-title">Gucci Princetown Leather Slippers with Web</h3>
+                    <div class="product-price">
+                        <span class="current-price">€490.00</span>
+                        <span class="original-price">€700.00</span>
+                        <span class="price-drop">€210 off</span>
+                    </div>
+                    <div class="price-history">
+                        <p>Price trend: <span class="trend down"><i class="fas fa-arrow-down"></i> 22% this month</span></p>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn btn-primary btn-sm">
+                            <i class="fas fa-shopping-cart"></i> Buy Now
+                        </button>
+                        <button class="remove-btn">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Empty State (commented out, shown when wishlist is empty) -->
+        <!--
+        <div class="wishlist-empty">
+            <i class="fas fa-heart"></i>
+            <h3>Your wishlist is empty</h3>
+            <p>Start adding items you love from French stores and we'll help you track prices and availability</p>
+            <button class="btn btn-primary">
+                <i class="fas fa-search"></i> Browse Stores
+            </button>
+        </div>
+        -->
+    </div>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-links">
+                    <div>
+                        <h4>Shop</h4>
+                        <ul>
+                            <li><a href="#">Supported Stores</a></li>
+                            <li><a href="#">Popular Products</a></li>
+                            <li><a href="#">New Arrivals</a></li>
+                            <li><a href="#">Seasonal Offers</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Service</h4>
+                        <ul>
+                            <li><a href="#">How It Works</a></li>
+                            <li><a href="#">Shipping Calculator</a></li>
+                            <li><a href="#">Package Consolidation</a></li>
+                            <li><a href="#">Gift Wrapping</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Careers</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Help</h4>
+                        <ul>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Shipping Info</a></li>
+                            <li><a href="#">Returns & Refunds</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <div>© 2023 Peinard Shopping. All rights reserved.</div>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Remove item from wishlist
+        document.querySelectorAll('.remove-btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const productCard = e.target.closest('.product-card');
+                productCard.style.transform = 'translateX(100%)';
+                productCard.style.opacity = '0';
+                setTimeout(() => {
+                    productCard.remove();
+                    
+                    // Check if wishlist is empty
+                    if (document.querySelectorAll('.product-card').length === 0) {
+                        // In a real app, you would show the empty state
+                        console.log('Wishlist is now empty');
+                    }
+                }, 300);
+            });
+        });
+        
+        // Track price drops button
+        document.querySelector('.wishlist-actions .btn-primary').addEventListener('click', () => {
+            alert('We will notify you when prices drop on items in your wishlist!');
+        });
+        
+        // Share wishlist button
+        document.querySelector('.wishlist-actions .btn-outline').addEventListener('click', () => {
+            alert('Wishlist sharing feature coming soon!');
+        });
+    </script>
+</body>
+</html>

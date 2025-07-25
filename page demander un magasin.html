@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request a Store - Peinard Shopping</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #3b82f6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --neutral: #6b7280;
+            --light-bg: #f9fafb;
+            --card-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e5e7eb;
+            margin-bottom: 2rem;
+        }
+        
+        .page-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #111827;
+        }
+        
+        .btn {
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #4f46e5;
+        }
+        
+        .request-store-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .request-form {
+            background-color: white;
+            border-radius: 0.5rem;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .form-title {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: #111827;
+        }
+        
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #374151;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.625rem 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            transition: border-color 0.2s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .form-note {
+            font-size: 0.75rem;
+            color: var(--neutral);
+            margin-top: 0.25rem;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 0.75rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+        
+        .info-section {
+            background-color: white;
+            border-radius: 0.5rem;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .info-title {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: #111827;
+        }
+        
+        .info-content {
+            color: #4b5563;
+            line-height: 1.6;
+        }
+        
+        .info-content p {
+            margin-bottom: 1rem;
+        }
+        
+        .feature-list {
+            margin: 1.5rem 0;
+            padding-left: 1.5rem;
+        }
+        
+        .feature-list li {
+            margin-bottom: 0.75rem;
+            position: relative;
+        }
+        
+        .feature-list li::before {
+            content: "•";
+            color: var(--primary);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .supported-stores-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .store-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 60px;
+            padding: 0.5rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.25rem;
+            background-color: white;
+        }
+        
+        .store-logo img {
+            max-height: 100%;
+            max-width: 100%;
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.2s;
+        }
+        
+        .store-logo:hover img {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+        
+        .success-message {
+            display: none;
+            background-color: #d1fae5;
+            color: #065f46;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .success-message.show {
+            display: block;
+        }
+        
+        .success-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .request-store-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .supported-stores-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .supported-stores-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="page-title">Request a Store</h1>
+        </header>
+        
+        <!-- Success Message (hidden by default) -->
+        <div class="success-message" id="successMessage">
+            <div class="success-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+            </div>
+            <h3>Request Submitted Successfully!</h3>
+            <p>We've received your store request and will review it shortly. You'll receive an email once we've added support for this store.</p>
+        </div>
+        
+        <div class="request-store-container">
+            <div class="request-form">
+                <h2 class="form-title">Submit Store Request</h2>
+                <form id="storeRequestForm">
+                    <div class="form-group">
+                        <label for="storeName" class="form-label">Store Name *</label>
+                        <input type="text" id="storeName" class="form-control" required placeholder="e.g. La Redoute">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="storeUrl" class="form-label">Store Website URL *</label>
+                        <input type="url" id="storeUrl" class="form-control" required placeholder="https://www.example.com">
+                        <p class="form-note">Please include the full URL including https://</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="productExample" class="form-label">Product Example URL (Optional)</label>
+                        <input type="url" id="productExample" class="form-control" placeholder="https://www.example.com/product/123">
+                        <p class="form-note">Include a link to a specific product you'd like to purchase</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="userEmail" class="form-label">Your Email *</label>
+                        <input type="email" id="userEmail" class="form-control" required placeholder="your@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="requestNotes" class="form-label">Additional Notes</label>
+                        <textarea id="requestNotes" class="form-control" placeholder="Any special requirements or information about this store..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary submit-btn">
+                        Submit Store Request
+                    </button>
+                </form>
+            </div>
+            
+            <div class="info-section">
+                <h2 class="info-title">How Store Requests Work</h2>
+                <div class="info-content">
+                    <p>Can't find your favorite French store in our supported list? Request it here and we'll work to add support as quickly as possible.</p>
+                    
+                    <h3 style="margin-top: 1.5rem; font-size: 1rem; color: #111827;">Our Process:</h3>
+                    <ul class="feature-list">
+                        <li>We review each store request within 2 business days</li>
+                        <li>We assess technical feasibility and purchasing requirements</li>
+                        <li>You'll receive email updates about your request status</li>
+                        <li>Most stores are added within 1-2 weeks of request</li>
+                    </ul>
+                    
+                    <h3 style="margin-top: 1.5rem; font-size: 1rem; color: #111827;">What We Look For:</h3>
+                    <ul class="feature-list">
+                        <li>Stores must ship within France (no international shipping)</li>
+                        <li>Stores must have a secure checkout process</li>
+                        <li>Product availability must be reliably displayed</li>
+                        <li>Clear return policies are preferred</li>
+                    </ul>
+                    
+                    <h3 style="margin-top: 1.5rem; font-size: 1rem; color: #111827;">Popular Stores We Support:</h3>
+                    <div class="supported-stores-grid">
+                        <div class="store-logo">
+                            <img src="https://via.placeholder.com/120x40?text=Galeries+Lafayette" alt="Galeries Lafayette">
+                        </div>
+                        <div class="store-logo">
+                            <img src="https://via.placeholder.com/120x40?text=Sephora+FR" alt="Sephora FR">
+                        </div>
+                        <div class="store-logo">
+                            <img src="https://via.placeholder.com/120x40?text=FNAC" alt="FNAC">
+                        </div>
+                        <div class="store-logo">
+                            <img src="https://via.placeholder.com/120x40?text=Nicolas" alt="Nicolas">
+                        </div>
+                        <div class="store-logo">
+                            <img src="https://via.placeholder.com/120x40?text=La+Redoute" alt="La Redoute">
+                        </div>
+                        <div class="store-logo">
+                            <img src="https://via.placeholder.com/120x40?text=Printemps" alt="Printemps">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('storeRequestForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // In a real implementation, you would send this data to your backend
+            // For this demo, we'll just show the success message
+            
+            // Show success message
+            document.getElementById('successMessage').classList.add('show');
+            
+            // Scroll to top to show the message
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+            
+            // Reset form
+            this.reset();
+            
+            // Hide success message after 5 seconds
+            setTimeout(function() {
+                document.getElementById('successMessage').classList.remove('show');
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
