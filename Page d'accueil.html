@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FranceBuy Proxy - Shop from French Stores Worldwide</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .hero-bg {
+            background-image: url('https://images.unsplash.com/photo-1505935428862-770b6f24f629');
+            background-size: cover;
+            background-position: center;
+        }
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-8">
+                <a href="#" class="text-2xl font-bold text-indigo-600">FranceBuy<span class="text-indigo-400">Proxy</span></a>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#" class="text-gray-700 hover:text-indigo-600">How It Works</a>
+                    <a href="#" class="text-gray-700 hover:text-indigo-600">Stores</a>
+                    <a href="#" class="text-gray-700 hover:text-indigo-600">Pricing</a>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="relative hidden md:block">
+                    <input type="text" placeholder="Search French products..." class="pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent w-64">
+                    <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                </div>
+                <a href="#" class="text-gray-700 hover:text-indigo-600"><i class="far fa-user text-xl"></i></a>
+                <a href="#" class="text-gray-700 hover:text-indigo-600 relative">
+                    <i class="fas fa-shopping-cart text-xl"></i>
+                    <span class="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">3</span>
+                </a>
+                <button class="md:hidden text-gray-700">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-bg text-white py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">Shop from French Stores <br> We Handle Shipping Worldwide</h1>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Access thousands of products from France that don't ship internationally. We buy and ship them to your doorstep!</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <div class="relative w-full sm:w-96 mx-auto">
+                    <input type="text" placeholder="Search for perfumes, fashion, cosmetics..." class="pl-5 pr-4 py-4 rounded-lg border-0 focus:outline-none focus:ring-2 focus:ring-indigo-500 w-full text-gray-800">
+                    <button class="absolute right-2 top-2 bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700"><i class="fas fa-search mr-2"></i> Search</button>
+                </div>
+                <button class="bg-white text-indigo-600 px-6 py-4 rounded-lg font-semibold hover:bg-gray-100 flex items-center justify-center">
+                    <i class="fas fa-play-circle mr-2"></i> How It Works
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Categories -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Popular Categories</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="category-card bg-white rounded-lg shadow-md p-6 text-center transition duration-300">
+                    <div class="bg-indigo-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-tshirt text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">Fashion</h3>
+                    <p class="text-gray-600 text-sm">From Parisian boutiques</p>
+                </div>
+                <div class="category-card bg-white rounded-lg shadow-md p-6 text-center transition duration-300">
+                    <div class="bg-pink-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-spa text-pink-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">Beauty</h3>
+                    <p class="text-gray-600 text-sm">French cosmetics & perfumes</p>
+                </div>
+                <div class="category-card bg-white rounded-lg shadow-md p-6 text-center transition duration-300">
+                    <div class="bg-yellow-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-home text-yellow-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">Home Goods</h3>
+                    <p class="text-gray-600 text-sm">French decor & kitchenware</p>
+                </div>
+                <div class="category-card bg-white rounded-lg shadow-md p-6 text-center transition duration-300">
+                    <div class="bg-green-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-wine-bottle text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">Food & Wine</h3>
+                    <p class="text-gray-600 text-sm">Gourmet French specialties</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Stores -->
+    <section class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Featured French Stores</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="bg-white rounded-lg shadow-sm p-4 flex items-center justify-center border border-gray-200">
+                    <img src="https://logo.clearbit.com/galerieslafayette.com" alt="Galeries Lafayette" class="h-12 object-contain">
+                </div>
+                <div class="bg-white rounded-lg shadow-sm p-4 flex items-center justify-center border border-gray-200">
+                    <img src="https://logo.clearbit.com/sephora.fr" alt="Sephora FR" class="h-12 object-contain">
+                </div>
+                <div class="bg-white rounded-lg shadow-sm p-4 flex items-center justify-center border border-gray-200">
+                    <img src="https://logo.clearbit.com/fnac.com" alt="FNAC" class="h-12 object-contain">
+                </div>
+                <div class="bg-white rounded-lg shadow-sm p-4 flex items-center justify-center border border-gray-200">
+                    <img src="https://logo.clearbit.com/laredoute.fr" alt="La Redoute" class="h-12 object-contain">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-16">How FranceBuy Proxy Works</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="bg-indigo-100 w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-6 text-indigo-600 text-3xl font-bold">1</div>
+                    <h3 class="text-xl font-semibold mb-3">Find Products</h3>
+                    <p class="text-gray-600">Search or paste links from any French store. We'll verify availability and pricing.</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-indigo-100 w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-6 text-indigo-600 text-3xl font-bold">2</div>
+                    <h3 class="text-xl font-semibold mb-3">We Purchase</h3>
+                    <p class="text-gray-600">Our French team buys the items and ships them to our secure warehouse.</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-indigo-100 w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-6 text-indigo-600 text-3xl font-bold">3</div>
+                    <h3 class="text-xl font-semibold mb-3">We Ship to You</h3>
+                    <p class="text-gray-600">We consolidate packages and handle international shipping to your door.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 bg-indigo-600 text-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">What Our Customers Say</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-indigo-700 p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-indigo-500 flex items-center justify-center text-xl font-bold mr-4">JD</div>
+                        <div>
+                            <h4 class="font-semibold">John D.</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>"Finally got my hands on limited edition Dior that wasn't available in my country. FranceBuy made it so easy!"</p>
+                </div>
+                <div class="bg-indigo-700 p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-indigo-500 flex items-center justify-center text-xl font-bold mr-4">SM</div>
+                        <div>
+                            <h4 class="font-semibold">Sarah M.</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>"Saved 30% on French pharmacy products even with shipping. Their package consolidation is brilliant."</p>
+                </div>
+                <div class="bg-indigo-700 p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-indigo-500 flex items-center justify-center text-xl font-bold mr-4">AT</div>
+                        <div>
+                            <h4 class="font-semibold">Aisha T.</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>"The price tracking alerted me when the bag I wanted went on sale. Super helpful service!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-12 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">FranceBuy Proxy</h3>
+                    <p class="text-gray-400">Your gateway to French e-commerce with worldwide shipping solutions.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">How It Works</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Supported Stores</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Shipping Calculator</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Pricing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Help Center</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Returns</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Legal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Import Regulations</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2023 FranceBuy Proxy. All rights reserved.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supported French Stores - FranceBuy Proxy</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .store-card {
+            transition: all 0.3s ease;
+        }
+        .store-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .category-tab.active {
+            border-bottom: 3px solid #6366f1;
+            color: #6366f1;
+            font-weight: 600;
+        }
+        .store-logo {
+            height: 60px;
+            object-fit: contain;
+            filter: grayscale(100%);
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+        .store-card:hover .store-logo {
+            filter: grayscale(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-8">
+                <a href="#" class="text-2xl font-bold text-indigo-600">FranceBuy<span class="text-indigo-400">Proxy</span></a>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#" class="text-gray-700 hover:text-indigo-600">How It Works</a>
+                    <a href="#" class="text-indigo-600 font-medium">Stores</a>
+                    <a href="#" class="text-gray-700 hover:text-indigo-600">Pricing</a>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="relative hidden md:block">
+                    <input type="text" placeholder="Search French products..." class="pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent w-64">
+                    <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                </div>
+                <a href="#" class="text-gray-700 hover:text-indigo-600"><i class="far fa-user text-xl"></i></a>
+                <a href="#" class="text-gray-700 hover:text-indigo-600 relative">
+                    <i class="fas fa-shopping-cart text-xl"></i>
+                    <span class="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">3</span>
+                </a>
+                <button class="md:hidden text-gray-700">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-indigo-500 to-indigo-700 text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">Supported French Stores</h1>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Shop from hundreds of French retailers that don't ship internationally</p>
+            <div class="max-w-md mx-auto relative">
+                <input type="text" placeholder="Search stores..." class="w-full pl-12 pr-4 py-3 rounded-full border-0 focus:outline-none focus:ring-2 focus:ring-indigo-300 text-gray-800">
+                <i class="fas fa-search absolute left-5 top-4 text-gray-400"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Navigation -->
+    <section class="bg-white sticky top-0 z-10 shadow-sm">
+        <div class="container mx-auto px-4">
+            <div class="overflow-x-auto">
+                <div class="flex space-x-8 py-4">
+                    <button class="category-tab active px-1 py-2 whitespace-nowrap" data-category="all">All Stores</button>
+                    <button class="category-tab px-1 py-2 whitespace-nowrap" data-category="fashion">Fashion & Accessories</button>
+                    <button class="category-tab px-1 py-2 whitespace-nowrap" data-category="beauty">Beauty & Cosmetics</button>
+                    <button class="category-tab px-1 py-2 whitespace-nowrap" data-category="home">Home & Decor</button>
+                    <button class="category-tab px-1 py-2 whitespace-nowrap" data-category="electronics">Electronics</button>
+                    <button class="category-tab px-1 py-2 whitespace-nowrap" data-category="food">Food & Wine</button>
+                    <button class="category-tab px-1 py-2 whitespace-nowrap" data-category="kids">Kids & Baby</button>
+                    <button class="category-tab px-1 py-2 whitespace-nowrap" data-category="sports">Sports & Outdoors</button>
+                    <button class="category-tab px-1 py-2 whitespace-nowrap" data-category="pharmacy">Pharmacy</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stores Grid -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <!-- Featured Stores -->
+            <div class="mb-12">
+                <h2 class="text-2xl font-bold mb-6 flex items-center">
+                    <i class="fas fa-star text-yellow-400 mr-3"></i> Featured Stores
+                </h2>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                    <!-- Featured Store 1 -->
+                    <a href="#" class="store-card bg-white rounded-lg shadow-md p-6 text-center">
+                        <img src="https://logo.clearbit.com/galerieslafayette.com" alt="Galeries Lafayette" class="store-logo mx-auto mb-4">
+                        <h3 class="font-semibold">Galeries Lafayette</h3>
+                        <p class="text-gray-600 text-sm mt-1">Luxury department store</p>
+                        <span class="inline-block mt-2 px-2 py-1 bg-indigo-100 text-indigo-600 text-xs rounded-full">Fashion, Beauty, Home</span>
+                    </a>
+                    
+                    <!-- Featured Store 2 -->
+                    <a href="#" class="store-card bg-white rounded-lg shadow-md p-6 text-center">
+                        <img src="https://logo.clearbit.com/sephora.fr" alt="Sephora FR" class="store-logo mx-auto mb-4">
+                        <h3 class="font-semibold">Sephora France</h3>
+                        <p class="text-gray-600 text-sm mt-1">Beauty & cosmetics</p>
+                        <span class="inline-block mt-2 px-2 py-1 bg-indigo-100 text-indigo-600 text-xs rounded-full">Beauty</span>
+                    </a>
+                    
+                    <!-- Featured Store 3 -->
+                    <a href="#" class="store-card bg-white rounded-lg shadow-md p-6 text-center">
+                        <img src="https://logo.clearbit.com/fnac.com" alt="FNAC" class="store-logo mx-auto mb-4">
+                        <h3 class="font-semibold">FNAC</h3>
+                        <p class="text-gray-600 text-sm mt-1">Electronics & media</p>
+                        <span class="inline-block mt-2 px-2 py-1 bg-indigo-100 text-indigo-600 text-xs rounded-full">Electronics</span>
+                    </a>
+                    
+                    <!-- Featured Store 4 -->
+                    <a href="#" class="store-card bg-white rounded-lg shadow-md p-6 text-center">
+                        <img src="https://logo.clearbit.com/laredoute.fr" alt="La Redoute" class="store-logo mx-auto mb-4">
+                        <h3 class="font-semibold">La Redoute</h3>
+                        <p class="text-gray-600 text-sm mt-1">Fashion & home</p>
+                        <span class="inline-block mt-2 px-2 py-1 bg-indigo-100 text-indigo-600 text-xs rounded-full">Fashion, Home</span>
+                    </a>
+                    
+                    <!-- Featured Store 5 -->
+                    <a href="#" class="store-card bg-white rounded-lg shadow-md p-6 text-center">
+                        <img src="https://logo.clearbit.com/monoprix.fr" alt="Monoprix" class="store-logo mx-auto mb-4">
+                        <h3 class="font-semibold">Monoprix</h3>
+                        <p class="text-gray-600 text-sm mt-1">Food & lifestyle</p>
+                        <span class="inline-block mt-2 px-2 py-1 bg-indigo-100 text-indigo-600 text-xs rounded-full">Food, Home</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- All Stores by Category -->
+            <div id="stores-container">
+                <!-- Fashion & Accessories -->
+                <div class="mb-12 category-section" data-category="fashion">
+                    <h2 class="text-2xl font-bold mb-6 flex items-center">
+                        <i class="fas fa-tshirt text-indigo-500 mr-3"></i> Fashion & Accessories
+                    </h2>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                        <!-- Store 1 -->
+                        <a href="#" class="store-card bg-white rounded-lg shadow-md p-6 text-center">
+                            <img src="https://logo.clearbit.com/zara.com" alt="Zara FR" class="store-logo mx-auto mb-4">
+                            <h3 class="font-semibold">Zara France</h3>
+                            <p class="text-gray-600 text-sm mt-1">Fast fashion</p>
+                        </a>
+                        
+                        <!-- Store 2 -->
+                        <a href="#" class="store-card bg-white rounded-lg shadow-md p-6 text-center">
+                            <img src="https://logo.clearbit.com/hm.com" alt="H&M FR" class="store-logo mx-auto mb-4">
+                            <h3 class="font-semibold">H&M France</h3>
+                            <p class="text-gray-600 text-sm mt-1">Affordable fashion</p>
+                        </a>
+                        
+                        <!-- Store 3 -->
+                        <a href="#" class="store-card bg-white rounded-lg shadow-md p-6 text-center">
+                            <img src="https://logo.clearbit.com/24sevres.com" alt="24S" class="store-logo mx-auto mb-4">
+                            <h3 class="font-semibold">24S (LVMH)</h3>
+                            <p class="text-gray-600 text-sm mt-1">Luxury fashion</p>
+                        </a>
+                        
+                        <!-- Store 4 -->
+                        <a href="#" class="store-card bg-white rounded-lg shadow-md p-6 text-center">
+                            <img src="https://logo.clearbit.com/ssense.com" alt="SSENSE" class="store-logo mx-auto mb-4">
+                            <h3 class="font-semibold">SSENSE</h3>
+                            <p class="text-gray-600 text-sm mt-1">Designer fashion</p>
+                        </a>
+                        
+                        <!-- Store 5 -->
+                        <a href="#" class="store-card bg-white rounded-lg shadow-md p-6 text-center">
+                            <img src="https://logo.clearbit.com/sandro-paris.com" alt="Sandro" class="store-logo mx-auto mb-4">
+                            <h3 class="font-semibold">Sandro</h3>
+                            <p class="text-gray-600 text-sm mt-1">French contemporary</p>
+                        </a>
+                        
+                        <!-- Store 6 -->
+                        <a href="#" class="store-card bg-white rounded-lg shadow-md p-6 text-center">
+                            <img src="https://logo.clearbit.com/maje.com" alt="Maje" class="store-logo mx-auto mb-4">
+                            <h3 class="font-semibold">Maje</h3>
+                            <p class="text-gray-600 text-sm mt-1">Parisian style</p>
+                        </a>
+                        
+                        <!-- Store 7 -->
+                        <a href="#" class="store-card bg-white rounded-lg shadow-md p-6 text-center">
+                            <img src="https://logo.clearbit.com/ba-sh.com" alt="Ba&sh" class="store-logo mx-auto mb-4">
+                            <h3 class="font-semibold">ba&sh</h3>
+                            <p class="text-gray-600 text-sm mt-1">Boho chic fashion</p>
+                        </a>
+                        
+                        <!-- Store 8 -->
+                        <a href="#" class="store-card bg-white rounded-lg shadow-md p-6 text-center">
+                            <img src="https://logo.clearbit.com/agnesh.com" alt="Agnès b." class="store-logo mx-auto mb-4">
+                            <h3 class="font-semibold">Agnès b.</h3>
+                            <p class="text-gray-600 text-sm mt-1">French minimalist</p>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Beauty & Cosmetics -->
+                <div class="mb-12 category-section" data-category="beauty">
+                    <h2 class="text-2xl font-bold mb-6 flex items-center">
+                        <i class="fas fa-spa text-pink-500 mr-3"></i> Beauty & Cosmetics
+                    </h2>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                        <!-- Store 1 -->
+                        <a href="#" class="store-card bg-white rounded-lg shadow-md p-6 text-center">
+                            <img src="https://logo.clearbit.com/marionnaud.fr" alt="Marionnaud" class="store-logo mx-auto mb-4">
+                            <h3 class="font-semibold">Marionnaud</h3>
+                            <p class="text-gray-600 text-sm mt-1">Perfumes & cosmetics</p>
+                        </a>
+                        
+                        <!-- Store 2 -->
+                        <a href="#" class="store-card bg-white rounded-lg shadow-md p-6 text-center">
+                            <img src="https://logo.clearbit.com/nocibe.fr" alt="Nocibé" class="store-logo mx-auto mb-4">
+                            <h3 class="font-semibold">Nocibé</h3>
+                            <p class="text-gray-600 text-sm mt-1">Beauty retailer</p>
+                        </a>
+                        
+                        <!-- Store 3 -->
+                        <a href="#" class="store-card bg-white rounded-lg shadow-md p-6 text-center">
+                            <img src="https://logo.clearbit.com/feelunique.com" alt="Feelunique" class="store-logo mx-auto mb-4">
+                            <h3 class="font-semibold">Feelunique</h3>
+                            <p class="text-gray-600 text-sm mt-1">Beauty marketplace</p>
+                        </a>
+                        
+                        <!-- Store 4 -->
+                        <a href="#" class="store-card bg-white rounded-lg shadow-md p-6 text-center">
+                            <img src="https://logo.clearbit.com/parashop.com" alt="Parashop" class="store-logo mx-auto mb-4">
+                            <h3 class="font-semibold">Parashop</h3>
+                            <p class="text-gray-600 text-sm mt-1">Beauty & wellness</p>
+                        </a>
+                        
+                        <!-- Store 5 -->
+                        <a href="#" class="store-card bg-white rounded-lg shadow-md p-6 text-center">
+                            <img src="https://logo.clearbit.com/iledebeaute.com" alt="Ile de Beauté" class="store-logo mx-auto mb-4">
+                            <h3 class="font-semibold">Ile de Beauté</h3>
+                            <p class="text-gray-600 text-sm mt-1">Cosmetics chain</p>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Home & Decor -->
+                <div class="mb-12 category-section" data-category="home">
+                    <h2 class="text-2xl font-bold mb-6 flex items-center">
+                        <i class="fas fa-home text-yellow-500 mr-3"></i> Home & Decor
+                    </h2>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                        <!-- Store 1 -->
+                        <a href="#" class="store-card bg-white rounded-lg shadow-md p-6 text-center">
+                            <img src="https://logo.clearbit.com/maisondu monde.com" alt="Maisons du Monde" class="store-logo mx-auto mb-4">
+                            <h3 class="font-semibold">Maisons du Monde</h3>
+                            <p class="text-gray-600 text-sm mt-1">Furniture & decor</p>
+                        </a>
+                        
+                        <!-- Store 2 -->
+                        <a href="#" class="store-card bg-white rounded-lg shadow-md p-6 text-center">
+                            <img src="https://logo.clearbit.com/conforama.fr" alt="Conforama" class="store-logo mx-auto mb-4">
+                            <h3 class="font-semibold">Conforama</h3>
+                            <p class="text-gray-600 text-sm mt-1">Furniture retailer</p>
+                        </a>
+                        
+                        <!-- Store 3 -->
+                        <a href="#" class="store-card bg-white rounded-lg shadow-md p-6 text-center">
+                            <img src="https://logo.clearbit.com/leroymerlin.fr" alt="Leroy Merlin" class="store-logo mx-auto mb-4">
+                            <h3 class="font-semibold">Leroy Merlin</h3>
+                            <p class="text-gray-600 text-sm mt-1">DIY & home improvement</p>
+                        </a>
+                        
+                        <!-- Store 4 -->
+                        <a href="#" class="store-card bg-white rounded-lg shadow-md p-6 text-center">
+                            <img src="https://logo.clearbit.com/but.fr" alt="BUT" class="store-logo mx-auto mb-4">
+                            <h3 class="font-semibold">BUT</h3>
+                            <p class="text-gray-600 text-sm mt-1">Furniture & appliances</p>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Electronics -->
+                <div class="mb-12 category-section" data-category="electronics">
+                    <h2 class="text-2xl font-bold mb-6 flex items-center">
+                        <i class="fas fa-laptop-code text-blue-500 mr-3"></i> Electronics
+                    </h2>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                        <!-- Store 1 -->
+                        <a href="#" class="store-card bg-white rounded-lg shadow-md p-6 text-center">
+                            <img src="https://logo.clearbit.com/darty.com" alt="Darty" class="store-logo mx-auto mb-4">
+                            <h3 class="font-semibold">Darty</h3>
+                            <p class="text-gray-600 text-sm mt-1">Electronics & appliances</p>
+                        </a>
+                        
+                        <!-- Store 2 -->
+                        <a href="#" class="store-card bg-white rounded-lg shadow-md p-6 text-center">
+                            <img src="https://logo.clearbit.com/boulanger.com" alt="Boulanger" class="store-logo mx-auto mb-4">
+                            <h3 class="font-semibold">Boulanger</h3>
+                            <p class="text-gray-600 text-sm mt-1">Electronics & tech</p>
+                        </a>
+                        
+                        <!-- Store 3 -->
+                        <a href="#" class="store-card bg-white rounded-lg shadow-md p-6 text-center">
+                            <img src="https://logo.clearbit.com/ldlc.com" alt="LDLC" class="store-logo mx-auto mb-4">
+                            <h3 class="font-semibold">LDLC</h3>
+                            <p class="text-gray-600 text-sm mt-1">Computers & components</p>
+                        </a>
+                        
+                        <!-- Store 4 -->
+                        <a href="#" class="store-card bg-white rounded-lg shadow-md p-6 text-center">
+                            <img src="https://logo.clearbit.com/materiel.net" alt="Materiel.net" class="store-logo mx-auto mb-4">
+                            <h3 class="font-semibold">Materiel.net</h3>
+                            <p class="text-gray-600 text-sm mt-1">PC hardware & gaming</p>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Food & Wine -->
+                <div class="mb-12 category-section" data-category="food">
+                    <h2 class="text-2xl font-bold mb-6 flex items-center">
+                        <i class="fas fa-wine-bottle text-purple-500 mr-3"></i> Food & Wine
+                    </h2>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                        <!-- Store 1 -->
+                        <a href="#" class="store-card bg-white rounded-lg shadow-md p-6 text-center">
+                            <img src="https://logo.clearbit.com/nicolas.com" alt="Nicolas" class="store-logo mx-auto mb-4">
+                            <h3 class="font-semibold">Nicolas</h3>
+                            <p class="text-gray-600 text-sm mt-1">Wine merchant</p>
+                        </a>
+                        
+                        <!-- Store 2 -->
+                        <a href="#" class="store-card bg-white rounded-lg shadow-md p-6 text-center">
+                            <img src="https://logo.clearbit.com/gourmet.com" alt="La Grande Épicerie" class="store-logo mx-auto mb-4">
+                            <h3 class="font-semibold">La Grande Épicerie</h3>
+                            <p class="text-gray-600 text-sm mt-1">Gourmet foods</p>
+                        </a>
+                        
+                        <!-- Store 3 -->
+                        <a href="#" class="store-card bg-white rounded-lg shadow-md p-6 text-center">
+                            <img src="https://logo.clearbit.com/fauchon.com" alt="Fauchon" class="store-logo mx-auto mb-4">
+                            <h3 class="font-semibold">Fauchon</h3>
+                            <p class="text-gray-600 text-sm mt-1">Luxury foods</p>
+                        </a>
+                        
+                        <!-- Store 4 -->
+                        <a href="#" class="store-card bg-white rounded-lg shadow-md p-6 text-center">
+                            <img src="https://logo.clearbit.com/hediard.com" alt="Hédiard" class="store-logo mx-auto mb-4">
+                            <h3 class="font-semibold">Hédiard</h3>
+                            <p class="text-gray-600 text-sm mt-1">Fine foods & spices</p>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Kids & Baby -->
+                <div class="mb-12 category-section" data-category="kids">
+                    <h2 class="text-2xl font-bold mb-6 flex items-center">
+                        <i class="fas fa-baby text-blue-400 mr-3"></i> Kids & Baby
+                    </h2>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                        <!-- Store 1 -->
+                        <a href="#" class="store-card bg-white rounded-lg shadow-md p-6 text-center">
+                            <img src="https://logo.clearbit.com/oxybul.com" alt="Oxybul" class="store-logo mx-auto mb-4">
+                            <h3 class="font-semibold">Oxybul</h3>
+                            <p class="text-gray-600 text-sm mt-1">Toys & games</p>
+                        </a>
+                        
+                        <!-- Store 2 -->
+                        <a href="#" class="store-card bg-white rounded-lg shadow-md p-6 text-center">
+                            <img src="https://logo.clearbit.com/dupareille.com" alt="Du Pareil au Même" class="store-logo mx-auto mb-4">
+                            <h3 class="font-semibold">Du Pareil au Même</h3>
+                            <p class="text-gray-600 text-sm mt-1">Children's clothing</p>
+                        </a>
+                        
+                        <!-- Store 3 -->
+                        <a href="#" class="store-card bg-white rounded-lg shadow-md p-6 text-center">
+                            <img src="https://logo.clearbit.com/jacadi.fr" alt="Jacadi" class="store-logo mx-auto mb-4">
+                            <h3 class="font-semibold">Jacadi</h3>
+                            <p class="text-gray-600 text-sm mt-1">Luxury children's wear</p>
+                        </a>
+                        
+                        <!-- Store 4 -->
+                        <a href="#" class="store-card bg-white rounded-lg shadow-md p-6 text-center">
+                            <img src="https://logo.clearbit.com/catimini.com" alt="Catimini" class="store-logo mx-auto mb-4">
+                            <h3 class="font-semibold">Catimini</h3>
+                            <p class="text-gray-600 text-sm mt-1">Kids fashion</p>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Sports & Outdoors -->
+                <div class="mb-12 category-section" data-category="sports">
+                    <h2 class="text-2xl font-bold mb-6 flex items-center">
+                        <i class="fas fa-running text-green-500 mr-3"></i> Sports & Outdoors
+                    </h2>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                        <!-- Store 1 -->
+                        <a href="#" class="store-card bg-white rounded-lg shadow-md p-6 text-center">
+                            <img src="https://logo.clearbit.com/decathlon.fr" alt="Decathlon" class="store-logo mx-auto mb-4">
+                            <h3 class="font-semibold">Decathlon</h3>
+                            <p class="text-gray-600 text-sm mt-1">Sports equipment</p>
+                        </a>
+                        
+                        <!-- Store 2 -->
+                        <a href="#" class="store-card bg-white rounded-lg shadow-md p-6 text-center">
+                            <img src="https://logo.clearbit.com/go-sport.com" alt="Go Sport" class="store-logo mx-auto mb-4">
+                            <h3 class="font-semibold">Go Sport</h3>
+                            <p class="text-gray-600 text-sm mt-1">Sporting goods</p>
+                        </a>
+                        
+                        <!-- Store 3 -->
+                        <a href="#" class="store-card bg-white rounded-lg shadow-md p-6 text-center">
+                            <img src="https://logo.clearbit.com/au vieux campeur.fr" alt="Au Vieux Campeur" class="store-logo mx-auto mb-4">
+                            <h3 class="font-semibold">Au Vieux Campeur</h3>
+                            <p class="text-gray-600 text-sm mt-1">Outdoor equipment</p>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Pharmacy -->
+                <div class="mb-12 category-section" data-category="pharmacy">
+                    <h2 class="text-2xl font-bold mb-6 flex items-center">
+                        <i class="fas fa-prescription-bottle-alt text-red-400 mr-3"></i> Pharmacy & Health
+                    </h2>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                        <!-- Store 1 -->
+                        <a href="#" class="store-card bg-white rounded-lg shadow-md p-6 text-center">
+                            <img src="https://logo.clearbit.com/pharmaciengiphar.com" alt="Pharmacie Giphar" class="store-logo mx-auto mb-4">
+                            <h3 class="font-semibold">Pharmacie Giphar</h3>
+                            <p class="text-gray-600 text-sm mt-1">Pharmacy products</p>
+                        </a>
+                        
+                        <!-- Store 2 -->
+                        <a href="#" class="store-card bg-white rounded-lg shadow-md p-6 text-center">
+                            <img src="https://logo.clearbit.com/sante discount.com" alt="SantéDiscount" class="store-logo mx-auto mb-4">
+                            <h3 class="font-semibold">SantéDiscount</h3>
+                            <p class="text-gray-600 text-sm mt-1">Discount health products</p>
+                        </a>
+                        
+                        <!-- Store 3 -->
+                        <a href="#" class="store-card bg-white rounded-lg shadow-md p-6 text-center">
+                            <img src="https://logo.clearbit.com/1001pharmacies.com" alt="1001 Pharmacies" class="store-logo mx-auto mb-4">
+                            <h3 class="font-semibold">1001 Pharmacies</h3>
+                            <p class="text-gray-600 text-sm mt-1">Online pharmacy</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Request Store -->
+            <div class="bg-white rounded-lg shadow-md p-8 text-center">
+                <div class="max-w-2xl mx-auto">
+                    <div class="text-indigo-600 text-5xl mb-6">
+                        <i class="fas fa-store-alt"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold mb-4">Don't See Your Favorite Store?</h2>
+                    <p class="text-gray-600 mb-6">We're constantly adding new French retailers to our platform. Request a store and we'll check if we can support it!</p>
+                    <button class="bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-indigo-700 inline-flex items-center">
+                        <i class="fas fa-plus-circle mr-2"></i> Request a Store
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-12 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">FranceBuy Proxy</h3>
+                    <p class="text-gray-400">Your gateway to French e-commerce with worldwide shipping solutions.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">How It Works</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Supported Stores</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Shipping Calculator</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Pricing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Help Center</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Returns</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Legal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Import Regulations</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2023 FranceBuy Proxy. All rights reserved.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Category filtering functionality
+        document.querySelectorAll('.category-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Update active tab
+                document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                const category = tab.dataset.category;
+                
+                // Show/hide sections
+                document.querySelectorAll('.category-section').forEach(section => {
+                    if (category === 'all' || section.dataset.category === category) {
+                        section.style.display = 'block';
+                    } else {
+                        section.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

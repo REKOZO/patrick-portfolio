@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Cost Calculator - FranceBuy Proxy</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .calculator-step {
+            transition: all 0.3s ease;
+        }
+        .calculator-step.active {
+            border-left: 4px solid #6366f1;
+            background-color: #f0f4ff;
+        }
+        .item-row:hover {
+            background-color: #f8fafc;
+        }
+        input[type="range"] {
+            -webkit-appearance: none;
+            height: 6px;
+            background: #e5e7eb;
+            border-radius: 3px;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            background: #6366f1;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .summary-card {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-8">
+                <a href="#" class="text-2xl font-bold text-indigo-600">FranceBuy<span class="text-indigo-400">Proxy</span></a>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#" class="text-gray-700 hover:text-indigo-600">How It Works</a>
+                    <a href="#" class="text-gray-700 hover:text-indigo-600">Stores</a>
+                    <a href="#" class="text-gray-700 hover:text-indigo-600">Pricing</a>
+                    <a href="#" class="text-indigo-600 font-medium">Calculator</a>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="relative hidden md:block">
+                    <input type="text" placeholder="Search French products..." class="pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent w-64">
+                    <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                </div>
+                <a href="#" class="text-gray-700 hover:text-indigo-600"><i class="far fa-user text-xl"></i></a>
+                <a href="#" class="text-gray-700 hover:text-indigo-600 relative">
+                    <i class="fas fa-shopping-cart text-xl"></i>
+                    <span class="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">3</span>
+                </a>
+                <button class="md:hidden text-gray-700">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Calculator Header -->
+    <section class="bg-gradient-to-r from-indigo-500 to-indigo-700 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
+                <div>
+                    <h1 class="text-3xl md:text-4xl font-bold mb-2">Full Cost Calculator</h1>
+                    <p class="text-xl">Know exactly what you'll pay before you buy</p>
+                </div>
+                <div class="mt-6 md:mt-0">
+                    <span class="inline-block bg-indigo-700 text-white px-4 py-2 rounded-full text-sm font-medium">
+                        <i class="fas fa-sync-alt mr-2"></i> Reset Calculator
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator Steps -->
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Left Column - Steps -->
+            <div class="lg:w-2/3">
+                <!-- Step 1 - Items -->
+                <div class="calculator-step bg-white rounded-lg shadow-sm p-6 mb-6 active" id="step1">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold mr-4">1</div>
+                        <h2 class="text-xl font-bold">Add Items You Want to Purchase</h2>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <div class="flex flex-col sm:flex-row gap-4 mb-4">
+                            <div class="flex-1">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Product URL</label>
+                                <input type="text" placeholder="Paste link from French store" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            </div>
+                            <div class="sm:w-32">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Quantity</label>
+                                <input type="number" value="1" min="1" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            </div>
+                            <div class="sm:w-24 flex items-end">
+                                <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg w-full hover:bg-indigo-700">
+                                    Add
+                                </button>
+                            </div>
+                        </div>
+                        <p class="text-sm text-gray-500">Example: https://www.sephora.fr/p/dior-sauvage-P123456</p>
+                    </div>
+                    
+                    <!-- Items Table -->
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Qty</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Subtotal</th>
+                                    <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"></th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <!-- Item 1 -->
+                                <tr class="item-row">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div class="flex-shrink-0 h-10 w-10">
+                                                <img src="https://www.sephora.fr/dw/image/v2/BCVW_PRD/on/demandware.static/-/Sites-masterCatalog_Sephora/default/dw7b4e1a9a/images/hi-res/SKU/SKU_3/360600_swatch.jpg" alt="Dior Sauvage" class="h-10 w-10 object-contain">
+                                            </div>
+                                            <div class="ml-4">
+                                                <div class="text-sm font-medium text-gray-900">Dior Sauvage Eau de Toilette</div>
+                                                <div class="text-sm text-gray-500">Sephora FR</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        €85.00
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <input type="number" value="1" min="1" class="w-16 border border-gray-300 rounded px-2 py-1 text-sm">
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                        €85.00
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <button class="text-red-600 hover:text-red-900">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                
+                                <!-- Item 2 -->
+                                <tr class="item-row">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div class="flex-shrink-0 h-10 w-10">
+                                                <img src="https://www.sephora.fr/dw/image/v2/BCVW_PRD/on/demandware.static/-/Sites-masterCatalog_Sephora/default/dw3e7c7a1e/images/hi-res/SKU/SKU_3/360595_swatch.jpg" alt="Chanel Chance" class="h-10 w-10 object-contain">
+                                            </div>
+                                            <div class="ml-4">
+                                                <div class="text-sm font-medium text-gray-900">Chanel Chance Eau Tendre</div>
+                                                <div class="text-sm text-gray-500">Marionnaud</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        €102.00
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <input type="number" value="1" min="1" class="w-16 border border-gray-300 rounded px-2 py-1 text-sm">
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                        €102.00
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <button class="text-red-600 hover:text-red-900">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                
+                                <!-- Add Item Button -->
+                                <tr>
+                                    <td colspan="5" class="px-6 py-4 text-center">
+                                        <button class="text-indigo-600 font-medium flex items-center justify-center w-full">
+                                            <i class="fas fa-plus-circle mr-2"></i> Add Another Item
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="mt-6 flex justify-end">
+                        <button class="bg-indigo-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-indigo-700" onclick="nextStep('step1', 'step2')">
+                            Continue to Shipping <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Step 2 - Shipping -->
+                <div class="calculator-step bg-white rounded-lg shadow-sm p-6 mb-6 hidden" id="step2">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold mr-4">2</div>
+                        <h2 class="text-xl font-bold">Configure Shipping Options</h2>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-8 mb-6">
+                        <div>
+                            <h3 class="font-semibold text-lg mb-4">Shipping Destination</h3>
+                            <div class="mb-4">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Country</label>
+                                <select class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                                    <option>United States</option>
+                                    <option>Canada</option>
+                                    <option>United Kingdom</option>
+                                    <option>Australia</option>
+                                    <option>Japan</option>
+                                    <option>United Arab Emirates</option>
+                                </select>
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Postal Code</label>
+                                <input type="text" placeholder="Enter postal code" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-semibold text-lg mb-4">Package Details</h3>
+                            <div class="mb-4">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Package Weight</label>
+                                <div class="relative">
+                                    <input type="range" min="0.1" max="20" step="0.1" value="2.5" class="w-full mb-2">
+                                    <div class="flex justify-between text-xs text-gray-600">
+                                        <span>0.1 kg</span>
+                                        <span>20 kg</span>
+                                    </div>
+                                    <div class="text-center mt-2">
+                                        <span class="font-medium">2.5 kg</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Package Dimensions (cm)</label>
+                                <div class="grid grid-cols-3 gap-2">
+                                    <div>
+                                        <input type="number" placeholder="Length" value="30" class="w-full border border-gray-300 rounded-lg px-3 py-2">
+                                    </div>
+                                    <div>
+                                        <input type="number" placeholder="Width" value="20" class="w-full border border-gray-300 rounded-lg px-3 py-2">
+                                    </div>
+                                    <div>
+                                        <input type="number" placeholder="Height" value="10" class="w-full border border-gray-300 rounded-lg px-3 py-2">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="font-semibold text-lg mb-4">Shipping Options</h3>
+                    <div class="space-y-4 mb-6">
+                        <!-- Option 1 -->
+                        <label class="flex items-start p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-indigo-300">
+                            <input type="radio" name="shipping" checked class="mt-1 mr-3 text-indigo-600 focus:ring-indigo-500">
+                            <div class="flex-1">
+                                <div class="flex justify-between">
+                                    <span class="font-medium">Standard Shipping</span>
+                                    <span class="font-bold">€15.00</span>
+                                </div>
+                                <p class="text-sm text-gray-600">10-14 business days • No tracking</p>
+                            </div>
+                        </label>
+                        
+                        <!-- Option 2 -->
+                        <label class="flex items-start p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-indigo-300">
+                            <input type="radio" name="shipping" class="mt-1 mr-3 text-indigo-600 focus:ring-indigo-500">
+                            <div class="flex-1">
+                                <div class="flex justify-between">
+                                    <span class="font-medium">Express Shipping</span>
+                                    <span class="font-bold">€25.00</span>
+                                </div>
+                                <p class="text-sm text-gray-600">5-7 business days • With tracking</p>
+                            </div>
+                        </label>
+                        
+                        <!-- Option 3 -->
+                        <label class="flex items-start p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-indigo-300">
+                            <input type="radio" name="shipping" class="mt-1 mr-3 text-indigo-600 focus:ring-indigo-500">
+                            <div class="flex-1">
+                                <div class="flex justify-between">
+                                    <span class="font-medium">Priority Shipping</span>
+                                    <span class="font-bold">€40.00</span>
+                                </div>
+                                <p class="text-sm text-gray-600">3-5 business days • Full tracking & insurance</p>
+                            </div>
+                        </label>
+                    </div>
+                    
+                    <div class="flex justify-between">
+                        <button class="text-indigo-600 font-medium flex items-center" onclick="prevStep('step2', 'step1')">
+                            <i class="fas fa-arrow-left mr-2"></i> Back to Items
+                        </button>
+                        <button class="bg-indigo-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-indigo-700" onclick="nextStep('step2', 'step3')">
+                            Continue to Summary <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Step 3 - Summary -->
+                <div class="calculator-step bg-white rounded-lg shadow-sm p-6 mb-6 hidden" id="step3">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-indigo-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold mr-4">3</div>
+                        <h2 class="text-xl font-bold">Review Your Order Summary</h2>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <h3 class="font-semibold text-lg mb-4">Items in Your Order</h3>
+                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Qty</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Subtotal</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="flex-shrink-0 h-10 w-10">
+                                                    <img src="https://www.sephora.fr/dw/image/v2/BCVW_PRD/on/demandware.static/-/Sites-masterCatalog_Sephora/default/dw7b4e1a9a/images/hi-res/SKU/SKU_3/360600_swatch.jpg" alt="Dior Sauvage" class="h-10 w-10 object-contain">
+                                                </div>
+                                                <div class="ml-4">
+                                                    <div class="text-sm font-medium text-gray-900">Dior Sauvage Eau de Toilette</div>
+                                                    <div class="text-sm text-gray-500">Sephora FR</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            €85.00
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            1
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                            €85.00
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="flex-shrink-0 h-10 w-10">
+                                                    <img src="https://www.sephora.fr/dw/image/v2/BCVW_PRD/on/demandware.static/-/Sites-masterCatalog_Sephora/default/dw3e7c7a1e/images/hi-res/SKU/SKU_3/360595_swatch.jpg" alt="Chanel Chance" class="h-10 w-10 object-contain">
+                                                </div>
+                                                <div class="ml-4">
+                                                    <div class="text-sm font-medium text-gray-900">Chanel Chance Eau Tendre</div>
+                                                    <div class="text-sm text-gray-500">Marionnaud</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            €102.00
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            1
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                            €102.00
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <h3 class="font-semibold text-lg mb-4">Shipping Information</h3>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-medium mb-2">Shipping To</h4>
+                                <p class="text-gray-600">123 Main Street<br>New York, NY 10001<br>United States</p>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-medium mb-2">Shipping Method</h4>
+                                <p class="text-gray-600">Standard Shipping (10-14 business days)<br><span class="font-medium">€15.00</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-between">
+                        <button class="text-indigo-600 font-medium flex items-center" onclick="prevStep('step3', 'step2')">
+                            <i class="fas fa-arrow-left mr-2"></i> Back to Shipping
+                        </button>
+                        <button class="bg-indigo-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-indigo-700">
+                            Proceed to Checkout <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Column - Summary -->
+            <div class="lg:w-1/3">
+                <div class="summary-card bg-white rounded-lg shadow-md p-6 sticky top-4">
+                    <h2 class="text-xl font-bold mb-6">Order Summary</h2>
+                    
+                    <div class="mb-6">
+                        <h3 class="font-semibold text-lg mb-3">Items (2)</h3>
+                        <div class="space-y-3 mb-3">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Dior Sauvage Eau de Toilette</span>
+                                <span class="font-medium">€85.00</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Chanel Chance Eau Tendre</span>
+                                <span class="font-medium">€102.00</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between border-t border-gray-200 pt-2">
+                            <span class="font-medium">Subtotal</span>
+                            <span class="font-medium">€187.00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="font-semibold text-lg mb-3">Service Fees</h3>
+                        <div class="space-y-2 mb-3">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Basic Service Fee (10%)</span>
+                                <span class="font-medium">€18.70</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Package Handling</span>
+                                <span class="font-medium">€5.00</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between border-t border-gray-200 pt-2">
+                            <span class="font-medium">Total Fees</span>
+                            <span class="font-medium">€23.70</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="font-semibold text-lg mb-3">Shipping</h3>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-gray-600">Standard Shipping to US</span>
+                            <span class="font-medium">€15.00</span>
+                        </div>
+                        <div class="text-sm text-gray-500 mb-3">Estimated delivery: June 15-20, 2023</div>
+                        <div class="flex justify-between border-t border-gray-200 pt-2">
+                            <span class="font-medium">Shipping Total</span>
+                            <span class="font-medium">€15.00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <div class="flex justify-between mb-2">
+                            <span class="text-gray-600">Estimated Import Duties</span>
+                            <span class="font-medium">€12.50</span>
+                        </div>
+                        <div class="text-xs text-gray-500">Actual duties may vary based on final customs assessment</div>
+                    </div>
+                    
+                    <div class="border-t border-gray-200 pt-4 mb-6">
+                        <div class="flex justify-between">
+                            <span class="font-bold text-lg">Total Estimated Cost</span>
+                            <span class="font-bold text-xl text-indigo-600">€238.20</span>
+                        </div>
+                        <div class="text-sm text-gray-500 mt-1">≈ $260.50 (Exchange rate: 1 EUR = 1.0935 USD)</div>
+                    </div>
+                    
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                        <h4 class="font-medium text-blue-800 mb-2 flex items-center">
+                            <i class="fas fa-info-circle mr-2"></i> Save with Membership
+                        </h4>
+                        <p class="text-sm text-blue-700">Upgrade to Premium (€19/month) and save €9.35 on service fees for this order!</p>
+                        <button class="text-blue-600 font-medium text-sm mt-2 hover:underline">
+                            Learn More <i class="fas fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                    
+                    <button class="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700">
+                        Proceed to Checkout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Calculator FAQs</h2>
+            
+            <div class="max-w-3xl mx-auto">
+                <!-- FAQ Item 1 -->
+                <div class="mb-4 border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="faq-toggle w-full flex justify-between items-center p-6 text-left bg-white hover:bg-gray-50">
+                        <h3 class="font-semibold">How accurate is the cost estimate?</h3>
+                        <i class="fas fa-chevron-down text-indigo-600 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden p-6 border-t border-gray-200 bg-gray-50">
+                        <p class="text-gray-600">Our calculator provides highly accurate estimates based on current exchange rates and our extensive shipping data. The product prices are verified directly from the French stores when you add items. The only potential variance would be:</p>
+                        <ul class="list-disc list-inside text-gray-600 mt-2 space-y-1">
+                            <li>Final customs duties (though we estimate these based on your country's regulations)</li>
+                            <li>If product prices change between calculation and purchase</li>
+                            <li>If you modify package dimensions/weight from the estimate</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 2 -->
+                <div class="mb-4 border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="faq-toggle w-full flex justify-between items-center p-6 text-left bg-white hover:bg-gray-50">
+                        <h3 class="font-semibold">Can I calculate costs for multiple items from different stores?</h3>
+                        <i class="fas fa-chevron-down text-indigo-600 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden p-6 border-t border-gray-200 bg-gray-50">
+                        <p class="text-gray-600">Yes! Our calculator supports adding unlimited items from any French stores. When you add items from multiple stores, we'll automatically calculate the most cost-effective way to consolidate them into fewer packages to save you money on international shipping.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 3 -->
+                <div class="mb-4 border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="faq-toggle w-full flex justify-between items-center p-6 text-left bg-white hover:bg-gray-50">
+                        <h3 class="font-semibold">How are import duties calculated?</h3>
+                        <i class="fas fa-chevron-down text-indigo-600 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden p-6 border-t border-gray-200 bg-gray-50">
+                        <p class="text-gray-600">We calculate estimated import duties based on:</p>
+                        <ul class="list-disc list-inside text-gray-600 mt-2 space-y-1">
+                            <li>Your destination country's customs regulations</li>
+                            <li>The declared value of your items</li>
+                            <li>The type of products (different duty rates apply to different categories)</li>
+                            <li>Any applicable trade agreements between France and your country</li>
+                        </ul>
+                        <p class="text-gray-600 mt-2">For most countries, we're able to estimate duties within ±15% accuracy. Some countries like Canada and Australia have very predictable duty calculations, while others like Brazil and India can be more variable.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-12 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">FranceBuy Proxy</h3>
+                    <p class="text-gray-400">Your gateway to French e-commerce with worldwide shipping solutions.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">How It Works</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Supported Stores</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Pricing</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Cost Calculator</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Help Center</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Returns</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Legal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Import Regulations</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2023 FranceBuy Proxy. All rights reserved.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Step navigation
+        function nextStep(currentId, nextId) {
+            document.getElementById(currentId).classList.remove('active');
+            document.getElementById(currentId).classList.add('hidden');
+            document.getElementById(nextId).classList.remove('hidden');
+            document.getElementById(nextId).classList.add('active');
+        }
+        
+        function prevStep(currentId, prevId) {
+            document.getElementById(currentId).classList.remove('active');
+            document.getElementById(currentId).classList.add('hidden');
+            document.getElementById(prevId).classList.remove('hidden');
+            document.getElementById(prevId).classList.add('active');
+        }
+        
+        // FAQ toggle functionality
+        document.querySelectorAll('.faq-toggle').forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                const icon = button.querySelector('i');
+                
+                // Toggle content visibility
+                content.classList.toggle('hidden');
+                
+                // Rotate icon
+                if (content.classList.contains('hidden')) {
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                    icon.style.transform

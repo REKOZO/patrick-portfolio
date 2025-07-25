@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results - FranceBuy Proxy</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .price-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-8">
+                <a href="#" class="text-2xl font-bold text-indigo-600">FranceBuy<span class="text-indigo-400">Proxy</span></a>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#" class="text-gray-700 hover:text-indigo-600">How It Works</a>
+                    <a href="#" class="text-gray-700 hover:text-indigo-600">Stores</a>
+                    <a href="#" class="text-gray-700 hover:text-indigo-600">Pricing</a>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="relative hidden md:block">
+                    <input type="text" placeholder="Search French products..." class="pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent w-64">
+                    <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                </div>
+                <a href="#" class="text-gray-700 hover:text-indigo-600"><i class="far fa-user text-xl"></i></a>
+                <a href="#" class="text-gray-700 hover:text-indigo-600 relative">
+                    <i class="fas fa-shopping-cart text-xl"></i>
+                    <span class="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">3</span>
+                </a>
+                <button class="md:hidden text-gray-700">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Search Header -->
+    <div class="bg-white border-b border-gray-200 py-4">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
+                <div class="mb-4 md:mb-0">
+                    <h1 class="text-2xl font-semibold">Search Results for "French Perfume"</h1>
+                    <p class="text-gray-600">243 products found</p>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center">
+                        <span class="mr-2 text-gray-700">Sort by:</span>
+                        <select class="border border-gray-300 rounded-md px-3 py-1 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            <option>Relevance</option>
+                            <option>Price: Low to High</option>
+                            <option>Price: High to Low</option>
+                            <option>Newest</option>
+                            <option>Best Rating</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex flex-col md:flex-row">
+            <!-- Filters Sidebar -->
+            <div class="w-full md:w-64 pr-0 md:pr-8 mb-8 md:mb-0">
+                <div class="bg-white rounded-lg shadow-sm p-6 sticky top-4">
+                    <h3 class="font-semibold text-lg mb-4">Filters</h3>
+                    
+                    <!-- Price Range -->
+                    <div class="mb-6">
+                        <h4 class="font-medium mb-3 flex justify-between items-center">
+                            <span>Price Range</span>
+                            <button class="text-sm text-indigo-600">Reset</button>
+                        </h4>
+                        <div class="flex items-center justify-between mb-2">
+                            <input type="number" placeholder="Min" class="w-20 border border-gray-300 rounded px-2 py-1 text-sm">
+                            <span class="mx-2">to</span>
+                            <input type="number" placeholder="Max" class="w-20 border border-gray-300 rounded px-2 py-1 text-sm">
+                        </div>
+                        <button class="w-full bg-indigo-600 text-white py-1 rounded text-sm hover:bg-indigo-700">Apply</button>
+                    </div>
+                    
+                    <!-- Availability -->
+                    <div class="mb-6">
+                        <h4 class="font-medium mb-3">Availability</h4>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="rounded text-indigo-600 mr-2" checked>
+                                <span>In Stock</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="rounded text-indigo-600 mr-2">
+                                <span>Pre-Order</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Stores -->
+                    <div class="mb-6">
+                        <h4 class="font-medium mb-3">Stores</h4>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="rounded text-indigo-600 mr-2" checked>
+                                <span>Sephora FR</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="rounded text-indigo-600 mr-2" checked>
+                                <span>Marionnaud</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="rounded text-indigo-600 mr-2">
+                                <span>Nocibé</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="rounded text-indigo-600 mr-2">
+                                <span>Galeries Lafayette</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Categories -->
+                    <div class="mb-6">
+                        <h4 class="font-medium mb-3">Categories</h4>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="rounded text-indigo-600 mr-2" checked>
+                                <span>Perfume</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="rounded text-indigo-600 mr-2">
+                                <span>Eau de Toilette</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="rounded text-indigo-600 mr-2">
+                                <span>Gift Sets</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="checkbox" class="rounded text-indigo-600 mr-2">
+                                <span>Body Care</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button class="w-full bg-gray-100 text-gray-800 py-2 rounded-md hover:bg-gray-200 text-sm font-medium">Reset All Filters</button>
+                </div>
+            </div>
+            
+            <!-- Product Grid -->
+            <div class="flex-1">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Product Card 1 -->
+                    <div class="product-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
+                        <div class="relative">
+                            <img src="https://www.sephora.fr/dw/image/v2/BCVW_PRD/on/demandware.static/-/Sites-masterCatalog_Sephora/default/dw7b4e1a9a/images/hi-res/SKU/SKU_3/360600_swatch.jpg" alt="Dior Sauvage" class="w-full h-64 object-contain">
+                            <div class="price-badge bg-indigo-600 text-white px-3 py-1 rounded-full text-sm font-bold">€85.00</div>
+                            <button class="absolute bottom-2 left-2 bg-white text-indigo-600 p-2 rounded-full shadow-md hover:bg-indigo-100">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-semibold text-lg">Dior Sauvage Eau de Toilette</h3>
+                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">In Stock</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-3">Sephora FR</p>
+                            <div class="flex items-center mb-3">
+                                <div class="flex text-yellow-400 mr-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span class="text-gray-500 text-sm">(142)</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <p class="text-gray-500 text-sm">Total with shipping to US:</p>
+                                    <p class="font-bold">≈ $98.50</p>
+                                </div>
+                                <button class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 text-sm">Request Purchase</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product Card 2 -->
+                    <div class="product-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
+                        <div class="relative">
+                            <img src="https://www.sephora.fr/dw/image/v2/BCVW_PRD/on/demandware.static/-/Sites-masterCatalog_Sephora/default/dw3e7c7a1e/images/hi-res/SKU/SKU_3/360595_swatch.jpg" alt="Chanel Chance" class="w-full h-64 object-contain">
+                            <div class="price-badge bg-indigo-600 text-white px-3 py-1 rounded-full text-sm font-bold">€102.00</div>
+                            <button class="absolute bottom-2 left-2 bg-white text-indigo-600 p-2 rounded-full shadow-md hover:bg-indigo-100">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-semibold text-lg">Chanel Chance Eau Tendre</h3>
+                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">In Stock</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-3">Marionnaud</p>
+                            <div class="flex items-center mb-3">
+                                <div class="flex text-yellow-400 mr-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="text-gray-500 text-sm">(89)</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <p class="text-gray-500 text-sm">Total with shipping to US:</p>
+                                    <p class="font-bold">≈ $117.30</p>
+                                </div>
+                                <button class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 text-sm">Request Purchase</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product Card 3 -->
+                    <div class="product-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
+                        <div class="relative">
+                            <img src="https://www.sephora.fr/dw/image/v2/BCVW_PRD/on/demandware.static/-/Sites-masterCatalog_Sephora/default/dw3a3c0b9f/images/hi-res/SKU/SKU_3/360598_swatch.jpg" alt="Yves Saint Laurent" class="w-full h-64 object-contain">
+                            <div class="price-badge bg-indigo-600 text-white px-3 py-1 rounded-full text-sm font-bold">€78.50</div>
+                            <button class="absolute bottom-2 left-2 bg-white text-indigo-600 p-2 rounded-full shadow-md hover:bg-indigo-100">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-semibold text-lg">Yves Saint Laurent Black Opium</h3>
+                                <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded">Low Stock</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-3">Nocibé</p>
+                            <div class="flex items-center mb-3">
+                                <div class="flex text-yellow-400 mr-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                <span class="text-gray-500 text-sm">(204)</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <p class="text-gray-500 text-sm">Total with shipping to US:</p>
+                                    <p class="font-bold">≈ $90.50</p>
+                                </div>
+                                <button class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 text-sm">Request Purchase</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product Card 4 -->
+                    <div class="product-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
+                        <div class="relative">
+                            <img src="https://www.sephora.fr/dw/image/v2/BCVW_PRD/on/demandware.static/-/Sites-masterCatalog_Sephora/default/dw3a3c0b9f/images/hi-res/SKU/SKU_3/360598_swatch.jpg" alt="Guerlain" class="w-full h-64 object-contain">
+                            <div class="price-badge bg-indigo-600 text-white px-3 py-1 rounded-full text-sm font-bold">€135.00</div>
+                            <button class="absolute bottom-2 left-2 bg-white text-indigo-600 p-2 rounded-full shadow-md hover:bg-indigo-100">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-semibold text-lg">Guerlain Mon Guerlain</h3>
+                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">In Stock</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-3">Galeries Lafayette</p>
+                            <div class="flex items-center mb-3">
+                                <div class="flex text-yellow-400 mr-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span class="text-gray-500 text-sm">(67)</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <p class="text-gray-500 text-sm">Total with shipping to US:</p>
+                                    <p class="font-bold">≈ $155.20</p>
+                                </div>
+                                <button class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 text-sm">Request Purchase</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product Card 5 -->
+                    <div class="product-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
+                        <div class="relative">
+                            <img src="https://www.sephora.fr/dw/image/v2/BCVW_PRD/on/demandware.static/-/Sites-masterCatalog_Sephora/default/dw3a3c0b9f/images/hi-res/SKU/SKU_3/360598_swatch.jpg" alt="Jean Paul Gaultier" class="w-full h-64 object-contain">
+                            <div class="price-badge bg-indigo-600 text-white px-3 py-1 rounded-full text-sm font-bold">€92.50</div>
+                            <button class="absolute bottom-2 left-2 bg-white text-indigo-600 p-2 rounded-full shadow-md hover:bg-indigo-100">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-semibold text-lg">Jean Paul Gaultier Le Male</h3>
+                                <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded">Pre-Order</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-3">Sephora FR</p>
+                            <div class="flex items-center mb-3">
+                                <div class="flex text-yellow-400 mr-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="text-gray-500 text-sm">(312)</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <p class="text-gray-500 text-sm">Total with shipping to US:</p>
+                                    <p class="font-bold">≈ $106.50</p>
+                                </div>
+                                <button class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 text-sm">Pre-Order</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product Card 6 -->
+                    <div class="product-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
+                        <div class="relative">
+                            <img src="https://www.sephora.fr/dw/image/v2/BCVW_PRD/on/demandware.static/-/Sites-masterCatalog_Sephora/default/dw3a3c0b9f/images/hi-res/SKU/SKU_3/360598_swatch.jpg" alt="Hermès" class="w-full h-64 object-contain">
+                            <div class="price-badge bg-indigo-600 text-white px-3 py-1 rounded-full text-sm font-bold">€120.00</div>
+                            <button class="absolute bottom-2 left-2 bg-white text-indigo-600 p-2 rounded-full shadow-md hover:bg-indigo-100">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-semibold text-lg">Hermès Twilly d'Hermès</h3>
+                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">In Stock</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-3">Sephora FR</p>
+                            <div class="flex items-center mb-3">
+                                <div class="flex text-yellow-400 mr-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                <span class="text-gray-500 text-sm">(178)</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <p class="text-gray-500 text-sm">Total with shipping to US:</p>
+                                    <p class="font-bold">≈ $138.00</p>
+                                </div>
+                                <button class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 text-sm">Request Purchase</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pagination -->
+                <div class="mt-10 flex justify-center">
+                    <nav class="flex items-center space-x-2">
+                        <button class="px-3 py-1 rounded border border-gray-300 text-gray-500 hover:bg-gray-100">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="px-3 py-1 rounded border border-indigo-600 bg-indigo-600 text-white">1</button>
+                        <button class="px-3 py-1 rounded border border-gray-300 hover:bg-gray-100">2</button>
+                        <button class="px-3 py-1 rounded border border-gray-300 hover:bg-gray-100">3</button>
+                        <span class="px-2 text-gray-500">...</span>
+                        <button class="px-3 py-1 rounded border border-gray-300 hover:bg-gray-100">8</button>
+                        <button class="px-3 py-1 rounded border border-gray-300 text-gray-500 hover:bg-gray-100">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-12 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">FranceBuy Proxy</h3>
+                    <p class="text-gray-400">Your gateway to French e-commerce with worldwide shipping solutions.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">How It Works</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Supported Stores</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Shipping Calculator</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Pricing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Help Center</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Returns</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Legal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Import Regulations</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2023 FranceBuy Proxy. All rights reserved.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

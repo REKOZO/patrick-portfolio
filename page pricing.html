@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - FranceBuy Proxy</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .pricing-card {
+            transition: all 0.3s ease;
+        }
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .popular-plan {
+            border: 2px solid #6366f1;
+            position: relative;
+        }
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: #6366f1;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .feature-list li {
+            position: relative;
+            padding-left: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+        .feature-list li:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.35rem;
+            width: 1rem;
+            height: 1rem;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2310B981'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-8">
+                <a href="#" class="text-2xl font-bold text-indigo-600">FranceBuy<span class="text-indigo-400">Proxy</span></a>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#" class="text-gray-700 hover:text-indigo-600">How It Works</a>
+                    <a href="#" class="text-gray-700 hover:text-indigo-600">Stores</a>
+                    <a href="#" class="text-indigo-600 font-medium">Pricing</a>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="relative hidden md:block">
+                    <input type="text" placeholder="Search French products..." class="pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent w-64">
+                    <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                </div>
+                <a href="#" class="text-gray-700 hover:text-indigo-600"><i class="far fa-user text-xl"></i></a>
+                <a href="#" class="text-gray-700 hover:text-indigo-600 relative">
+                    <i class="fas fa-shopping-cart text-xl"></i>
+                    <span class="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">3</span>
+                </a>
+                <button class="md:hidden text-gray-700">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-indigo-500 to-indigo-700 text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">Simple, Transparent Pricing</h1>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">No hidden fees. Know exactly what you'll pay before you checkout.</p>
+            <div class="inline-flex bg-white rounded-full p-1">
+                <button class="px-6 py-2 rounded-full font-medium bg-indigo-600 text-white">Monthly</button>
+                <button class="px-6 py-2 rounded-full font-medium text-gray-700">Annual (Save 15%)</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Plans -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Basic Plan -->
+                <div class="pricing-card bg-white rounded-lg shadow-md p-8">
+                    <h3 class="text-xl font-semibold mb-4">Basic</h3>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold">€9</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <p class="text-gray-600 mb-6">For occasional shoppers who want access to French stores</p>
+                    <button class="w-full bg-gray-200 text-gray-800 py-3 rounded-lg font-semibold hover:bg-gray-300 mb-8">
+                        Get Started
+                    </button>
+                    <ul class="feature-list text-gray-700">
+                        <li>10% service fee per item</li>
+                        <li>Standard processing (3-5 business days)</li>
+                        <li>Basic package protection</li>
+                        <li>Email support</li>
+                        <li>Up to 5 items per month</li>
+                    </ul>
+                </div>
+                
+                <!-- Premium Plan (Popular) -->
+                <div class="pricing-card popular-plan bg-white rounded-lg shadow-md p-8">
+                    <div class="popular-badge">MOST POPULAR</div>
+                    <h3 class="text-xl font-semibold mb-4">Premium</h3>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold">€19</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <p class="text-gray-600 mb-6">For regular shoppers who want the best value</p>
+                    <button class="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 mb-8">
+                        Get Started
+                    </button>
+                    <ul class="feature-list text-gray-700">
+                        <li>7% service fee per item</li>
+                        <li>Priority processing (1-2 business days)</li>
+                        <li>Enhanced package protection</li>
+                        <li>24/7 chat support</li>
+                        <li>Up to 20 items per month</li>
+                        <li>Package consolidation</li>
+                        <li>Price drop alerts</li>
+                    </ul>
+                </div>
+                
+                <!-- Business Plan -->
+                <div class="pricing-card bg-white rounded-lg shadow-md p-8">
+                    <h3 class="text-xl font-semibold mb-4">Business</h3>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold">€49</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <p class="text-gray-600 mb-6">For businesses and high-volume shoppers</p>
+                    <button class="w-full bg-gray-200 text-gray-800 py-3 rounded-lg font-semibold hover:bg-gray-300 mb-8">
+                        Get Started
+                    </button>
+                    <ul class="feature-list text-gray-700">
+                        <li>5% service fee per item</li>
+                        <li>Express processing (same day)</li>
+                        <li>Premium package protection</li>
+                        <li>Dedicated account manager</li>
+                        <li>Unlimited items</li>
+                        <li>Advanced package consolidation</li>
+                        <li>Bulk shipping discounts</li>
+                        <li>Customs clearance assistance</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cost Calculator -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto bg-indigo-50 rounded-xl p-8">
+                <h2 class="text-2xl font-bold mb-6 text-center">Shipping Cost Calculator</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Destination Country</label>
+                            <select class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                                <option>United States</option>
+                                <option>Canada</option>
+                                <option>United Kingdom</option>
+                                <option>Australia</option>
+                                <option>Japan</option>
+                                <option>United Arab Emirates</option>
+                            </select>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Package Weight</label>
+                            <div class="relative">
+                                <input type="range" min="0.1" max="20" step="0.1" value="2" class="w-full">
+                                <div class="flex justify-between text-xs text-gray-600 mt-1">
+                                    <span>0.1 kg</span>
+                                    <span>20 kg</span>
+                                </div>
+                                <div class="text-center mt-2">
+                                    <span class="font-medium">2 kg</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Shipping Speed</label>
+                            <select class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                                <option>Standard (10-14 business days)</option>
+                                <option>Express (5-7 business days)</option>
+                                <option>Priority (3-5 business days)</option>
+                            </select>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Package Dimensions</label>
+                            <div class="grid grid-cols-3 gap-3">
+                                <div>
+                                    <label class="block text-xs text-gray-500 mb-1">Length (cm)</label>
+                                    <input type="number" value="30" class="w-full border border-gray-300 rounded-lg px-3 py-2">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-gray-500 mb-1">Width (cm)</label>
+                                    <input type="number" value="20" class="w-full border border-gray-300 rounded-lg px-3 py-2">
+                                </div>
+                                <div>
+                                    <label class="block text-xs text-gray-500 mb-1">Height (cm)</label>
+                                    <input type="number" value="10" class="w-full border border-gray-300 rounded-lg px-3 py-2">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg p-6 mt-6">
+                    <h3 class="font-semibold text-lg mb-4">Estimated Shipping Cost</h3>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <p class="text-gray-600">Standard shipping to United States</p>
+                            <p class="text-sm text-gray-500">Approximate delivery: June 15-20, 2023</p>
+                        </div>
+                        <div class="text-2xl font-bold text-indigo-600">€18.50</div>
+                    </div>
+                </div>
+                <div class="text-center mt-6">
+                    <button class="bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-indigo-700">
+                        Calculate Exact Shipping
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cost Breakdown -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Understanding Your Costs</h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden mb-8">
+                    <div class="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-gray-200">
+                        <!-- Product Cost -->
+                        <div class="p-6">
+                            <h3 class="font-semibold text-lg mb-4 flex items-center">
+                                <span class="bg-indigo-100 text-indigo-600 w-8 h-8 rounded-full flex items-center justify-center mr-3">1</span>
+                                Product Cost
+                            </h3>
+                            <p class="text-gray-600 mb-4">You pay the exact price shown on the French store's website in Euros.</p>
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <p class="font-medium">Example:</p>
+                                <p class="text-gray-600">Dior Perfume: <span class="font-semibold">€85.00</span></p>
+                            </div>
+                        </div>
+                        
+                        <!-- Service Fee -->
+                        <div class="p-6">
+                            <h3 class="font-semibold text-lg mb-4 flex items-center">
+                                <span class="bg-indigo-100 text-indigo-600 w-8 h-8 rounded-full flex items-center justify-center mr-3">2</span>
+                                Our Service Fee
+                            </h3>
+                            <p class="text-gray-600 mb-4">Fee for purchasing, handling, and customer support.</p>
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <p class="font-medium">Standard Fee:</p>
+                                <p class="text-gray-600">10% of product cost<br>(min €5, max €50)</p>
+                                <p class="text-indigo-600 font-semibold mt-2">+€8.50</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Shipping -->
+                        <div class="p-6">
+                            <h3 class="font-semibold text-lg mb-4 flex items-center">
+                                <span class="bg-indigo-100 text-indigo-600 w-8 h-8 rounded-full flex items-center justify-center mr-3">3</span>
+                                International Shipping
+                            </h3>
+                            <p class="text-gray-600 mb-4">Calculated based on weight, size, and destination.</p>
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <p class="font-medium">Example to USA:</p>
+                                <p class="text-gray-600">Standard: <span class="font-semibold">€15.00</span></p>
+                                <p class="text-gray-600">Express: <span class="font-semibold">€25.00</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Total Example -->
+                    <div class="bg-indigo-100 p-6 border-t border-indigo-200">
+                        <div class="flex flex-col md:flex-row justify-between items-center">
+                            <div class="mb-4 md:mb-0">
+                                <h3 class="font-semibold text-lg">Total Example</h3>
+                                <p class="text-gray-700">Dior Perfume shipped to USA with standard shipping</p>
+                            </div>
+                            <div class="bg-white rounded-lg p-4 min-w-[200px] text-center">
+                                <p class="text-gray-600 text-sm">Total Cost</p>
+                                <p class="text-2xl font-bold text-indigo-600">€108.50</p>
+                                <p class="text-xs text-gray-500">(€85 + €8.50 + €15)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <p class="text-gray-600 mb-4">Want to see how much you'll pay for your items?</p>
+                    <a href="#" class="inline-block bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-indigo-700">
+                        Try Our Full Cost Calculator
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Proposition -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Why FranceBuy Proxy is Worth It</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Value 1 -->
+                <div class="bg-gray-50 rounded-lg p-6">
+                    <div class="text-indigo-600 text-3xl mb-4">
+                        <i class="fas fa-euro-sign"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-3">French Prices Are Often Lower</h3>
+                    <p class="text-gray-600">Even with our service fee, many products are cheaper than buying locally thanks to lower French retail prices and frequent sales.</p>
+                </div>
+                
+                <!-- Value 2 -->
+                <div class="bg-gray-50 rounded-lg p-6">
+                    <div class="text-indigo-600 text-3xl mb-4">
+                        <i class="fas fa-box-open"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-3">Access Exclusive Products</h3>
+                    <p class="text-gray-600">Many French brands don't ship internationally or offer different product selections in other countries.</p>
+                </div>
+                
+                <!-- Value 3 -->
+                <div class="bg-gray-50 rounded-lg p-6">
+                    <div class="text-indigo-600 text-3xl mb-4">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-3">Hassle-Free Experience</h3>
+                    <p class="text-gray-600">We handle all the complexities - French payment methods, customer service in French, customs paperwork, and more.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Pricing FAQs</h2>
+            
+            <div class="max-w-3xl mx-auto">
+                <!-- FAQ Item 1 -->
+                <div class="mb-4 border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="faq-toggle w-full flex justify-between items-center p-6 text-left bg-white hover:bg-gray-50">
+                        <h3 class="font-semibold">Are there any hidden fees?</h3>
+                        <i class="fas fa-chevron-down text-indigo-600 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden p-6 border-t border-gray-200 bg-gray-50">
+                        <p class="text-gray-600">No, we believe in transparent pricing. Your total cost will always be clearly displayed before checkout and consists of: (1) the product price in Euros, (2) our service fee, and (3) international shipping costs. The only additional potential cost would be any import duties required by your country, which we'll estimate for you during checkout.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 2 -->
+                <div class="mb-4 border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="faq-toggle w-full flex justify-between items-center p-6 text-left bg-white hover:bg-gray-50">
+                        <h3 class="font-semibold">Can I get a refund if the French store has a sale after I buy?</h3>
+                        <i class="fas fa-chevron-down text-indigo-600 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden p-6 border-t border-gray-200 bg-gray-50">
+                        <p class="text-gray-600">We offer price protection for Premium and Business plan members. If an item you purchased goes on sale within 7 days of your purchase, we'll refund you the difference. For Basic members, we recommend using our price drop alerts to time your purchases strategically.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 3 -->
+                <div class="mb-4 border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="faq-toggle w-full flex justify-between items-center p-6 text-left bg-white hover:bg-gray-50">
+                        <h3 class="font-semibold">How does package consolidation affect pricing?</h3>
+                        <i class="fas fa-chevron-down text-indigo-600 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden p-6 border-t border-gray-200 bg-gray-50">
+                        <p class="text-gray-600">Consolidating multiple items into one shipment can significantly reduce your shipping costs. Instead of paying individual shipping fees for each store, you pay one international shipping fee for the combined package. Our system automatically calculates the most cost-effective way to ship your items together.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 4 -->
+                <div class="mb-4 border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="faq-toggle w-full flex justify-between items-center p-6 text-left bg-white hover:bg-gray-50">
+                        <h3 class="font-semibold">What payment methods do you accept?</h3>
+                        <i class="fas fa-chevron-down text-indigo-600 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden p-6 border-t border-gray-200 bg-gray-50">
+                        <p class="text-gray-600">We accept all major credit cards (Visa, Mastercard, American Express), PayPal, and bank transfers. All transactions are processed in Euros, but you'll see an estimated amount in your local currency before confirming your order.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-8">
+                <a href="#" class="inline-flex items-center text-indigo-600 font-semibold hover:underline">
+                    View All Pricing FAQs <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 bg-indigo-600 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-6">Ready to Start Shopping from France?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Create your free account and get instant access to hundreds of French stores</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#" class="bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100">
+                    Sign Up Free
+                </a>
+                <a href="#" class="bg-indigo-700 text-white px-8 py-3 rounded-lg font-semibold hover:bg-indigo-800">
+                    Calculate Shipping Costs
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-12 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">FranceBuy Proxy</h3>
+                    <p class="text-gray-400">Your gateway to French e-commerce with worldwide shipping solutions.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">How It Works</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Supported Stores</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Pricing</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Shipping Calculator</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Help Center</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Returns</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Legal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Import Regulations</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2023 FranceBuy Proxy. All rights reserved.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ toggle functionality
+        document.querySelectorAll('.faq-toggle').forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                const icon = button.querySelector('i');
+                
+                // Toggle content visibility
+                content.classList.toggle('hidden');
+                
+                // Rotate icon
+                if (content.classList.contains('hidden')) {
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                    icon.style.transform = 'rotate(180deg)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

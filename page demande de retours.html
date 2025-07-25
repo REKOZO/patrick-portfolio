@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request a Return - FranceBuyProxy</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #3b82f6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --neutral: #6b7280;
+            --light-bg: #f9fafb;
+            --card-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e5e7eb;
+            margin-bottom: 2rem;
+        }
+        
+        .page-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #111827;
+        }
+        
+        .btn {
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--neutral);
+            color: #374151;
+        }
+        
+        .btn-outline:hover {
+            background-color: #f3f4f6;
+        }
+        
+        .return-request-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .order-summary {
+            background-color: white;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            box-shadow: var(--card-shadow);
+            height: fit-content;
+        }
+        
+        .summary-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #111827;
+        }
+        
+        .order-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .order-item:last-child {
+            border-bottom: none;
+        }
+        
+        .item-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 0.25rem;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .item-details {
+            flex-grow: 1;
+        }
+        
+        .item-title {
+            font-size: 0.875rem;
+            color: #111827;
+            margin-bottom: 0.25rem;
+        }
+        
+        .item-store {
+            font-size: 0.75rem;
+            color: var(--neutral);
+            margin-bottom: 0.5rem;
+        }
+        
+        .item-price {
+            font-weight: 600;
+            color: #111827;
+        }
+        
+        .return-form {
+            background-color: white;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .form-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #111827;
+        }
+        
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #374151;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.625rem 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            transition: border-color 0.2s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1rem;
+        }
+        
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .radio-option {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+        
+        .radio-input {
+            margin-top: 0.25rem;
+        }
+        
+        .radio-label {
+            font-size: 0.875rem;
+        }
+        
+        .form-note {
+            font-size: 0.75rem;
+            color: var(--neutral);
+            margin-top: 0.25rem;
+        }
+        
+        .file-upload {
+            border: 1px dashed #d1d5db;
+            border-radius: 0.375rem;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .file-upload:hover {
+            border-color: var(--primary);
+            background-color: #f8fafc;
+        }
+        
+        .file-input {
+            display: none;
+        }
+        
+        .file-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--neutral);
+            font-size: 0.875rem;
+        }
+        
+        .file-preview {
+            display: none;
+            margin-top: 1rem;
+            font-size: 0.875rem;
+            color: var(--neutral);
+        }
+        
+        .refund-summary {
+            background-color: #f8fafc;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+        }
+        
+        .summary-label {
+            color: var(--neutral);
+        }
+        
+        .summary-value {
+            font-weight: 500;
+        }
+        
+        .summary-total {
+            border-top: 1px solid #e5e7eb;
+            padding-top: 0.75rem;
+            margin-top: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 0.75rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .submit-btn:hover {
+            background-color: #4f46e5;
+        }
+        
+        .warning-box {
+            background-color: #fffbeb;
+            border-left: 4px solid var(--warning);
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .warning-title {
+            font-weight: 600;
+            color: #92400e;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .return-request-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="page-title">Request a Return</h1>
+            <button class="btn btn-outline">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                </svg>
+                View Return Policy
+            </button>
+        </header>
+        
+        <div class="return-request-container">
+            <div class="order-summary">
+                <h2 class="summary-title">Order Summary</h2>
+                
+                <div class="order-item">
+                    <div class="item-image">
+                        <img src="https://via.placeholder.com/300x300?text=French+Designer+Bag" alt="Product Image">
+                    </div>
+                    <div class="item-details">
+                        <h3 class="item-title">Longchamp Le Pliage Large Shopping Bag - Navy Blue</h3>
+                        <div class="item-store">Galeries Lafayette</div>
+                        <div class="item-price">€89.99</div>
+                    </div>
+                </div>
+                
+                <div class="order-item">
+                    <div class="item-image">
+                        <img src="https://via.placeholder.com/300x300?text=French+Perfume" alt="Product Image">
+                    </div>
+                    <div class="item-details">
+                        <h3 class="item-title">Chanel Chance Eau Tendre Eau de Parfum 50ml</h3>
+                        <div class="item-store">Sephora FR</div>
+                        <div class="item-price">€105.00</div>
+                    </div>
+                </div>
+                
+                <div class="refund-summary">
+                    <div class="summary-row">
+                        <span class="summary-label">Order Total:</span>
+                        <span class="summary-value">€194.99</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label">Shipping:</span>
+                        <span class="summary-value">€24.50</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label">Service Fees:</span>
+                        <span class="summary-value">€19.50</span>
+                    </div>
+                    <div class="summary-row summary-total">
+                        <span>Total Paid:</span>
+                        <span>€238.99</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="return-form">
+                <h2 class="form-title">Return Details</h2>
+                
+                <div class="warning-box">
+                    <div class="warning-title">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                            <line x1="12" y1="9" x2="12" y2="13"></line>
+                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                        </svg>
+                        Return Policy Reminder
+                    </div>
+                    <p style="font-size: 0.875rem; color: #92400e;">You must initiate returns within 14 days of delivery. Items must be in original condition with all tags attached. A €15 restocking fee applies to non-faulty returns.</p>
+                </div>
+                
+                <form id="returnRequestForm">
+                    <div class="form-group">
+                        <label class="form-label">Select Items to Return *</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="checkbox" id="item1" name="returnItems" value="item1" class="radio-input" checked>
+                                <label for="item1" class="radio-label">Longchamp Le Pliage Large Shopping Bag - Navy Blue (€89.99)</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="checkbox" id="item2" name="returnItems" value="item2" class="radio-input">
+                                <label for="item2" class="radio-label">Chanel Chance Eau Tendre Eau de Parfum 50ml (€105.00)</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="returnReason" class="form-label">Reason for Return *</label>
+                        <select id="returnReason" class="form-control" required>
+                            <option value="">Select a reason</option>
+                            <option value="changed-mind">Changed mind</option>
+                            <option value="wrong-item">Wrong item received</option>
+                            <option value="damaged">Damaged or defective</option>
+                            <option value="not-as-described">Not as described</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="returnDetails" class="form-label">Additional Details *</label>
+                        <textarea id="returnDetails" class="form-control" required placeholder="Please provide details about your return (e.g., what's wrong with the item, damage description)"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Upload Photos (Optional)</label>
+                        <div class="file-upload" id="fileUploadArea">
+                            <input type="file" id="returnPhotos" class="file-input" accept="image/*" multiple>
+                            <label for="returnPhotos" class="file-label">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="17 8 12 3 7 8"></polyline>
+                                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                                </svg>
+                                Click to upload photos
+                                <span>Supports JPG, PNG (max 5MB each)</span>
+                            </label>
+                            <div class="file-preview" id="filePreview"></div>
+                        </div>
+                        <p class="form-note">Helpful for damaged or incorrect items. Maximum 5 photos.</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="returnAction" class="form-label">Return Preference *</label>
+                        <select id="returnAction" class="form-control" required>
+                            <option value="">Select an option</option>
+                            <option value="refund">Refund to original payment method</option>
+                            <option value="credit">Store credit (5% bonus)</option>
+                            <option value="exchange">Exchange for different item</option>
+                        </select>
+                    </div>
+                    
+                    <div class="refund-summary">
+                        <div class="summary-row">
+                            <span class="summary-label">Item(s) Subtotal:</span>
+                            <span class="summary-value">€89.99</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="summary-label">Restocking Fee:</span>
+                            <span class="summary-value">-€15.00</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="summary-label">Original Shipping:</span>
+                            <span class="summary-value">Non-refundable</span>
+                        </div>
+                        <div class="summary-row summary-total">
+                            <span>Estimated Refund:</span>
+                            <span>€74.99</span>
+                        </div>
+                        <p style="font-size: 0.75rem; color: var(--neutral); margin-top: 0.5rem;">* Final refund amount may vary based on inspection</p>
+                    </div>
+                    
+                    <button type="submit" class="btn submit-btn">
+                        Submit Return Request
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // File upload preview
+        const fileInput = document.getElementById('returnPhotos');
+        const filePreview = document.getElementById('filePreview');
+        const fileUploadArea = document.getElementById('fileUploadArea');
+        
+        fileInput.addEventListener('change', function() {
+            if (this.files.length > 0) {
+                filePreview.style.display = 'block';
+                filePreview.innerHTML = '';
+                
+                if (this.files.length > 5) {
+                    filePreview.innerHTML = '<div style="color: var(--danger);">Maximum 5 files allowed</div>';
+                    this.value = '';
+                    return;
+                }
+                
+                filePreview.innerHTML = `<div>Selected ${this.files.length} file(s)</div>`;
+                fileUploadArea.style.borderColor = '#10b981';
+                fileUploadArea.style.backgroundColor = '#f0fdf4';
+            } else {
+                filePreview.style.display = 'none';
+                fileUploadArea.style.borderColor = '#d1d5db';
+                fileUploadArea.style.backgroundColor = 'transparent';
+            }
+        });
+        
+        // Update refund summary when items change
+        const checkboxes = document.querySelectorAll('input[name="returnItems"]');
+        const refundSummary = document.querySelectorAll('.refund-summary .summary-value');
+        
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', updateRefundSummary);
+        });
+        
+        function updateRefundSummary() {
+            let subtotal = 0;
+            let selectedItems = 0;
+            
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    selectedItems++;
+                    // In a real implementation, you would get the price from data attributes
+                    subtotal += checkbox.id === 'item1' ? 89.99 : 105.00;
+                }
+            });
+            
+            if (selectedItems > 0) {
+                const restockingFee = 15 * selectedItems;
+                const estimatedRefund = subtotal - restockingFee;
+                
+                refundSummary[0].textContent = `€${subtotal.toFixed(2)}`;
+                refundSummary[1].textContent = `-€${restockingFee.toFixed(2)}`;
+                refundSummary[3].textContent = `€${estimatedRefund.toFixed(2)}`;
+            } else {
+                refundSummary[0].textContent = '€0.00';
+                refundSummary[1].textContent = '-€0.00';
+                refundSummary[3].textContent = '€0.00';
+            }
+        }
+        
+        // Form submission
+        document.getElementById('returnRequestForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // In a real implementation, you would send this data to your backend
+            alert('Return request submitted successfully! You will receive a confirmation email with return instructions.');
+            
+            // Reset form
+            this.reset();
+            filePreview.style.display = 'none';
+            fileUploadArea.style.borderColor = '#d1d5db';
+            fileUploadArea.style.backgroundColor = 'transparent';
+        });
+    </script>
+</body>
+</html>

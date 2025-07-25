@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase Request | Peinard Shopping</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #3b82f6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --light: #f9fafb;
+            --dark: #1f2937;
+            --gray: #6b7280;
+            --gray-light: #e5e7eb;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            background-color: #f3f4f6;
+            color: var(--dark);
+            line-height: 1.5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        header {
+            background-color: white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--dark);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        .user-menu {
+            display: flex;
+            align-items: center;
+        }
+        
+        .user-menu img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-left: 1rem;
+            object-fit: cover;
+        }
+        
+        .purchase-request {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .sidebar {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            align-self: flex-start;
+        }
+        
+        .sidebar h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--gray-light);
+        }
+        
+        .sidebar ul {
+            list-style: none;
+        }
+        
+        .sidebar ul li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .sidebar ul li a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--gray);
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            transition: all 0.2s;
+        }
+        
+        .sidebar ul li a:hover, .sidebar ul li a.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .sidebar ul li a i {
+            margin-right: 0.75rem;
+            font-size: 1.1rem;
+        }
+        
+        .main-content {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--gray-light);
+        }
+        
+        .section-header h2 {
+            font-size: 1.5rem;
+            color: var(--dark);
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            outline: none;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--gray-light);
+            color: var(--dark);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--gray-light);
+        }
+        
+        .btn-sm {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.875rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--gray-light);
+            border-radius: 0.375rem;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+        }
+        
+        .form-text {
+            font-size: 0.875rem;
+            color: var(--gray);
+            margin-top: 0.25rem;
+        }
+        
+        .row {
+            display: flex;
+            margin: 0 -0.75rem;
+        }
+        
+        .col {
+            flex: 1;
+            padding: 0 0.75rem;
+        }
+        
+        .product-preview {
+            border: 1px dashed var(--gray-light);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .product-preview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .product-preview-title {
+            font-weight: 500;
+        }
+        
+        .product-preview-remove {
+            color: var(--danger);
+            cursor: pointer;
+        }
+        
+        .product-preview-content {
+            display: flex;
+        }
+        
+        .product-preview-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 0.25rem;
+            overflow: hidden;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .product-preview-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .product-preview-details {
+            flex: 1;
+        }
+        
+        .product-preview-price {
+            font-weight: 600;
+            margin: 0.25rem 0;
+        }
+        
+        .product-preview-store {
+            font-size: 0.875rem;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+        }
+        
+        .product-preview-store img {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            margin-right: 0.25rem;
+        }
+        
+        .request-summary {
+            background-color: rgba(99, 102, 241, 0.05);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--gray-light);
+        }
+        
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+        
+        .summary-item.total {
+            font-weight: bold;
+            font-size: 1.125rem;
+            margin-top: 0.5rem;
+        }
+        
+        .supported-stores {
+            margin-top: 2rem;
+        }
+        
+        .stores-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .store-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            border: 1px solid var(--gray-light);
+            border-radius: 0.25rem;
+            transition: all 0.2s;
+        }
+        
+        .store-card:hover {
+            border-color: var(--primary);
+        }
+        
+        .store-card img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: contain;
+            margin-bottom: 0.5rem;
+        }
+        
+        .store-card span {
+            font-size: 0.75rem;
+            text-align: center;
+        }
+        
+        .alert {
+            padding: 1rem;
+            border-radius: 0.375rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .alert-info {
+            background-color: rgba(59, 130, 246, 0.1);
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .alert i {
+            margin-right: 0.75rem;
+            color: var(--secondary);
+        }
+        
+        .alert-content h4 {
+            margin-bottom: 0.25rem;
+        }
+        
+        .alert-content p {
+            font-size: 0.875rem;
+            color: var(--gray);
+        }
+        
+        footer {
+            background-color: white;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            border-top: 1px solid var(--gray-light);
+        }
+        
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .footer-links {
+            display: flex;
+        }
+        
+        .footer-links div {
+            margin-right: 3rem;
+        }
+        
+        .footer-links h4 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links ul li a {
+            text-decoration: none;
+            color: var(--gray);
+            font-size: 0.875rem;
+            transition: color 0.2s;
+        }
+        
+        .footer-links ul li a:hover {
+            color: var(--primary);
+        }
+        
+        .footer-bottom {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--gray-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.875rem;
+            color: var(--gray);
+        }
+        
+        .social-links a {
+            margin-left: 1rem;
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .social-links a:hover {
+            color: var(--primary);
+        }
+        
+        @media (max-width: 768px) {
+            .purchase-request {
+                grid-template-columns: 1fr;
+            }
+            
+            .row {
+                flex-direction: column;
+            }
+            
+            .col {
+                margin-bottom: 1rem;
+            }
+            
+            .product-preview-content {
+                flex-direction: column;
+            }
+            
+            .product-preview-image {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+            
+            .footer-container {
+                flex-direction: column;
+            }
+            
+            .footer-links {
+                flex-wrap: wrap;
+                margin-bottom: 1.5rem;
+            }
+            
+            .footer-links div {
+                margin-right: 1.5rem;
+                margin-bottom: 1.5rem;
+                width: calc(50% - 1.5rem);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .stores-grid {
+                grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            }
+            
+            .footer-links div {
+                width: 100%;
+                margin-right: 0;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">France<span>BuyProxy</span></a>
+            <nav>
+                <ul>
+                    <li><a href="stores.html">Stores</a></li>
+                    <li><a href="how-it-works.html">How It Works</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                </ul>
+            </nav>
+            <div class="user-menu">
+                <span>Welcome, John</span>
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User profile">
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="purchase-request">
+            <div class="sidebar">
+                <h3>Purchase Services</h3>
+                <ul>
+                    <li><a href="#" class="active"><i class="fas fa-cart-plus"></i> New Purchase Request</a></li>
+                    <li><a href="#"><i class="fas fa-history"></i> Request History</a></li>
+                    <li><a href="#"><i class="fas fa-star"></i> Saved Items</a></li>
+                    <li><a href="#"><i class="fas fa-tags"></i> Price Alerts</a></li>
+                    <li><a href="#"><i class="fas fa-question-circle"></i> Help Center</a></li>
+                </ul>
+            </div>
+            
+            <div class="main-content">
+                <div class="section-header">
+                    <h2>New Purchase Request</h2>
+                    <button class="btn btn-outline">
+                        <i class="fas fa-history"></i> View Past Requests
+                    </button>
+                </div>
+                
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle"></i>
+                    <div class="alert-content">
+                        <h4>How our purchase service works</h4>
+                        <p>Provide the product URL and we'll handle the purchase from the French store, including any size/color selection and special instructions.</p>
+                    </div>
+                </div>
+                
+                <form id="purchaseForm">
+                    <div class="form-group">
+                        <label for="productUrl">Product URL</label>
+                        <input type="url" id="productUrl" class="form-control" placeholder="https://www.frenchstore.com/product/123" required>
+                        <p class="form-text">Paste the complete URL of the product you want us to purchase for you</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="productName">Product Name (Optional)</label>
+                        <input type="text" id="productName" class="form-control" placeholder="e.g. Louis Vuitton Neverfull MM Bag">
+                        <p class="form-text">Help us identify the product if the URL is not clear</p>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="size">Size (if applicable)</label>
+                                <input type="text" id="size" class="form-control" placeholder="e.g. Medium, 38, XL">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="color">Color/Variation (if applicable)</label>
+                                <input type="text" id="color" class="form-control" placeholder="e.g. Black, Rose Gold">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="quantity">Quantity</label>
+                        <select id="quantity" class="form-control">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="maxPrice">Maximum Price You'll Pay (€)</label>
+                        <input type="number" id="maxPrice" class="form-control" placeholder="e.g. 250" step="0.01" min="0">
+                        <p class="form-text">We'll notify you if the price exceeds this amount</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="instructions">Special Instructions</label>
+                        <textarea id="instructions" class="form-control" rows="3" placeholder="Any specific requests about packaging, verification, or other details"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="giftWrapping"> Include gift wrapping (€9.90)
+                        </label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="priorityProcessing"> Priority processing (€14.90 - purchase within 4 hours)
+                        </label>
+                    </div>
+                    
+                    <div class="product-preview" id="productPreview" style="display: none;">
+                        <div class="product-preview-header">
+                            <div class="product-preview-title">Product Preview</div>
+                            <div class="product-preview-remove"><i class="fas fa-times"></i></div>
+                        </div>
+                        <div class="product-preview-content">
+                            <div class="product-preview-image">
+                                <img src="" alt="Product image" id="previewImage">
+                            </div>
+                            <div class="product-preview-details">
+                                <div id="previewTitle"></div>
+                                <div class="product-preview-price" id="previewPrice"></div>
+                                <div class="product-preview-store">
+                                    <img src="" alt="Store logo" id="previewStoreLogo">
+                                    <span id="previewStoreName"></span>
+                                </div>
+                                <div id="previewAvailability" style="font-size: 0.75rem; margin-top: 0.5rem;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="request-summary">
+                        <h3 style="margin-bottom: 1rem;">Request Summary</h3>
+                        <div class="summary-item">
+                            <span>Service Fee:</span>
+                            <span>€5.00</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Gift Wrapping:</span>
+                            <span>€0.00</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Priority Processing:</span>
+                            <span>€0.00</span>
+                        </div>
+                        <div class="summary-item total">
+                            <span>Estimated Total:</span>
+                            <span>€5.00 + product cost</span>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: flex-end; margin-top: 2rem;">
+                        <button type="button" class="btn btn-outline" style="margin-right: 1rem;">
+                            Save for Later
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Submit Purchase Request
+                        </button>
+                    </div>
+                </form>
+                
+                <div class="supported-stores">
+                    <h3>Supported French Stores</h3>
+                    <p>We can purchase from these and hundreds of other French retailers:</p>
+                    <div class="stores-grid">
+                        <div class="store-card">
+                            <img src="https://logo.clearbit.com/louisvuitton.com" alt="Louis Vuitton">
+                            <span>Louis Vuitton</span>
+                        </div>
+                        <div class="store-card">
+                            <img src="https://logo.clearbit.com/chanel.com" alt="Chanel">
+                            <span>Chanel</span>
+                        </div>
+                        <div class="store-card">
+                            <img src="https://logo.clearbit.com/hermes.com" alt="Hermès">
+                            <span>Hermès</span>
+                        </div>
+                        <div class="store-card">
+                            <img src="https://logo.clearbit.com/dior.com" alt="Dior">
+                            <span>Dior</span>
+                        </div>
+                        <div class="store-card">
+                            <img src="https://logo.clearbit.com/galerieslafayette.com" alt="Galeries Lafayette">
+                            <span>Galeries Lafayette</span>
+                        </div>
+                        <div class="store-card">
+                            <img src="https://logo.clearbit.com/printemps.com" alt="Printemps">
+                            <span>Printemps</span>
+                        </div>
+                        <div class="store-card">
+                            <img src="https://logo.clearbit.com/sezane.com" alt="Sézane">
+                            <span>Sézane</span>
+                        </div>
+                        <div class="store-card">
+                            <img src="https://logo.clearbit.com/ssense.com" alt="SSENSE">
+                            <span>SSENSE</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-links">
+                    <div>
+                        <h4>Shop</h4>
+                        <ul>
+                            <li><a href="#">Supported Stores</a></li>
+                            <li><a href="#">Popular Products</a></li>
+                            <li><a href="#">New Arrivals</a></li>
+                            <li><a href="#">Seasonal Offers</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Service</h4>
+                        <ul>
+                            <li><a href="#">How It Works</a></li>
+                            <li><a href="#">Shipping Calculator</a></li>
+                            <li><a href="#">Package Consolidation</a></li>
+                            <li><a href="#">Gift Wrapping</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Careers</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Help</h4>
+                        <ul>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Shipping Info</a></li>
+                            <li><a href="#">Returns & Refunds</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <div>© 2023 Peinard Shopping. All rights reserved.</div>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // In a real application, this would fetch product data from the URL
+        document.getElementById('productUrl').addEventListener('blur', function() {
+            const url = this.value;
+            if (url) {
+                // Simulate fetching product data
+                setTimeout(() => {
+                    document.getElementById('productPreview').style.display = 'block';
+                    document.getElementById('previewImage').src = 'https://m.media-amazon.com/images/I/71X8N9Q+RBL._AC_UL320_.jpg';
+                    document.getElementById('previewTitle').textContent = 'Louis Vuitton Neverfull MM Monogram Canvas Tote Bag';
+                    document.getElementById('previewPrice').textContent = '€1,280.00';
+                    document.getElementById('previewStoreLogo').src = 'https://logo.clearbit.com/louisvuitton.com';
+                    document.getElementById('previewStoreName').textContent = 'Louis Vuitton';
+                    document.getElementById('previewAvailability').innerHTML = '<span style="color: var(--success);"><i class="fas fa-check-circle"></i> In Stock</span>';
+                    
+                    // Auto-fill product name if empty
+                    if (!document.getElementById('productName').value) {
+                        document.getElementById('productName').value = 'Louis Vuitton Neverfull MM Monogram Canvas Tote Bag';
+                    }
+                }, 800);
+            }
+        });
+        
+        // Remove product preview
+        document.querySelector('.product-preview-remove').addEventListener('click', function() {
+            document.getElementById('productPreview').style.display = 'none';
+        });
+        
+        // Update summary when options change
+        document.getElementById('giftWrapping').addEventListener('change', updateSummary);
+        document.getElementById('priorityProcessing').addEventListener('change', updateSummary);
+        
+        function updateSummary() {
+            const giftWrapping = document.getElementById('giftWrapping').checked ? 9.90 : 0;
+            const priorityProcessing = document.getElementById('priorityProcessing').checked ? 14.90 : 0;
+            const serviceFee = 5.00;
+            const total = serviceFee + giftWrapping + priorityProcessing;
+            
+            document.querySelectorAll('.summary-item')[1].innerHTML = `<span>Gift Wrapping:</span><span>€${giftWrapping.toFixed(2)}</span>`;
+            document.querySelectorAll('.summary-item')[2].innerHTML = `<span>Priority Processing:</span><span>€${priorityProcessing.toFixed(2)}</span>`;
+            document.querySelectorAll('.summary-item')[3].innerHTML = `<span>Estimated Total:</span><span>€${total.toFixed(2)} + product cost</span>`;
+        }
+        
+        // Form submission
+        document.getElementById('purchaseForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Purchase request submitted successfully! We will process your request and notify you via email.');
+            // In a real app, this would submit to your backend
+        });
+    </script>
+</body>
+</html>
